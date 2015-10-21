@@ -21,10 +21,8 @@ if len(args) > 3:
 print 'run is', run
 id_bins = '-1'
 if len(args) > 4: 
-    #id_bins = args[4]
-    TEST_id_bins = args[4]
-#print 'id_bins is', id_bins
-print 'TEST_id_bins is', TEST_id_bins
+    id_bins = args[4]
+print 'id_bins is', id_bins
 #for MC
 order = 'LO'
 if len(args) > 5: 
@@ -32,8 +30,6 @@ if len(args) > 5:
         print "@WARINING: no order variable is necessasry for data"
     order = args[5]
 print 'order is', order
-
-#scenario = "mc_all"
 
 process = cms.Process("TagProbe")
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -54,6 +50,8 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         charge = cms.vstring("muon charge", "-2.5", "2.5", ""),
         combRelIsoPF04dBeta = cms.vstring("dBeta rel iso dR 0.4", "-2", "9999999", ""),
         pfCombRelMiniIsoEACorr = cms.vstring("EA rel Mini Iso", "-2", "9999999",""),
+        PtRel = cms.vstring("PtRel", "-2", "9999999",""),
+        PtRatio = cms.vstring("PtRatio", "-2", "9999999",""),
         tag_pt = cms.vstring("Tag p_{T}", "0", "1000", "GeV/c"),
         tag_nVertices   = cms.vstring("Number of vertices", "0", "999", ""),
         tag_abseta = cms.vstring("|eta| of tag muon", "0", "2.5", ""),
@@ -83,6 +81,8 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         #Mini Iso
         LooseMiniIsoVar = cms.vstring("LooseMiniIsoVar" ,"pfCombRelMiniIsoEACorr < 0.4", "pfCombRelMiniIsoEACorr"),
         TightMiniIsoVar = cms.vstring("TightMiniIsoVar" ,"pfCombRelMiniIsoEACorr < 0.2", "pfCombRelMiniIsoEACorr"),
+        #Multi Iso
+        MediumMultiIsoVar= cms.vstring("MediumMultIsoVar" ,"pfCombRelMiniIsoEACorr < 0.16 && ( PtRel > 7.2 || PtRatio > 0.76 )", "pfCombRelMiniIsoEACorr", "PtRel", "PtRatio"),
     ),
 
     Cuts = cms.PSet(
@@ -94,10 +94,10 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         Medium_noIP= cms.vstring("Medium_noIP", "Medium_noIPVar", "0.5"),
         Tight2012_zIPCut = cms.vstring("Tight2012_zIPCut", "Tight2012_zIPCutVar", "0.5"),
         #MiniIsolations
-        #LooseMiniIso = cms.vstring("LooseMiniIso" ,"pfCombRelMiniIsoEACorr", "1"),
-        #TightMiniIso = cms.vstring("TightMiniIso" ,"pfCombRelMiniIsoEACorr", "0.2"),
         LooseMiniIso = cms.vstring("LooseMiniIso" ,"LooseMiniIsoVar", "0.5"),
         TightMiniIso = cms.vstring("TightMiniIso" ,"TightMiniIsoVar", "0.5"),
+        #Multi Iso
+        MediumMultiIso= cms.vstring("MediumMultiIso" ,"MediumMultiIsoVar", "0.5"),
     ),
 
                           
@@ -266,49 +266,7 @@ MEDIUM_PT_ETA_BINS1 = cms.PSet(
 )
 if scenario == 'data_all':
     if bs == '25ns':
-        if run == '2015C':
-            process.TnP_MuonID = Template.clone(
-                InputFileNames = cms.vstring(
-                    'root://eoscms//eos/cms/store/group/phys_muon/TagAndProbe/TnP_trees_aod747_25ns_goldenJSON_246908-255031_withFixes.root',
-                    ),
-                InputTreeName = cms.string("fitter_tree"),
-                InputDirectoryName = cms.string("tpTree"),
-                OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                Efficiencies = cms.PSet(),
-                )
-        elif run == '2015D':
-            process.TnP_MuonID = Template.clone(
-                InputFileNames = cms.vstring(
-                    '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/mu_POG/25ns/tnpZ_Data_25ns_run2015D_v3p1.root',
-                    ),
-                InputTreeName = cms.string("fitter_tree"),
-                InputDirectoryName = cms.string("tpTree"),
-                OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                Efficiencies = cms.PSet(),
-                )
-        
-    elif bs == '50ns':
-        if run == '2015B':
-            process.TnP_MuonID = Template.clone(
-                InputFileNames = cms.vstring(
-                    'root://eoscms//eos/cms/store/group/phys_muon/TagAndProbe/TnP_trees_aod747_goldenJSON_246908-251883_HLT_IsoMu20.root',
-                    ),
-                InputTreeName = cms.string("fitter_tree"),
-                InputDirectoryName = cms.string("tpTree"),
-                OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                Efficiencies = cms.PSet(),
-                )
-        elif run == '2015C':
-            process.TnP_MuonID = Template.clone(
-                InputFileNames = cms.vstring(
-                    'root://eoscms//eos/cms/store/group/phys_muon/TagAndProbe/TnP_trees_aod747_50ns_goldenJSON_254833.root',
-                    ),
-                InputTreeName = cms.string("fitter_tree"),
-                InputDirectoryName = cms.string("tpTree"),
-                OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                Efficiencies = cms.PSet(),
-                )
-        elif run == '2015D':
+        if run == '2015D':
             process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                     '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso.root',
@@ -319,84 +277,32 @@ if scenario == 'data_all':
                 Efficiencies = cms.PSet(),
                 )
 elif scenario == 'mc_all':
-    if bs == '50ns':
-        if run == '2015B':
-                if order== 'LO':
-                    process.TnP_MuonID = Template.clone(
-                    InputFileNames = cms.vstring(
-                        'root://eoscms//eos/cms/store/group/phys_muon/perrin/v3/SmallTree_TnP_trees_aod747_DY_LOmadgraph_50ns_withFixes_withNVtxWeights_2015B.root'
-                        ),
-                    InputTreeName = cms.string("fitter_tree"),
-                    InputDirectoryName = cms.string("tpTree"),
-                    OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                    Efficiencies = cms.PSet(),
-                    )
-                    process.TnP_MuonID.WeightVariable = cms.string("weight")
-                    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
-                elif order == 'NLO':
-                    process.TnP_MuonID = Template.clone(
-                    InputFileNames = cms.vstring(
-                    'root://eoscms//eos/cms/store/group/phys_muon/perrin/v3/SmallTree_TnP_trees_aod747_DY_amcatnlo_50ns_withFixes_withNVtxWeights_WithWeights_2015B.root'
-                        ),
-                    InputTreeName = cms.string("fitter_tree"),
-                    InputDirectoryName = cms.string("tpTree"),
-                    OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                    Efficiencies = cms.PSet(),
-                    )
-                    process.TnP_MuonID.WeightVariable = cms.string("weight")
-                    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
-        elif run == '2015C':
-                if order== 'LO':
-                    process.TnP_MuonID = Template.clone(
-                    InputFileNames = cms.vstring(
-                        'root://eoscms//eos/cms/store/group/phys_muon/perrin/v3/SmallTree_TnP_trees_aod747_DY_LOmadgraph_50ns_withFixes_withNVtxWeights_2015C.root'
-                        ),
-                    InputTreeName = cms.string("fitter_tree"),
-                    InputDirectoryName = cms.string("tpTree"),
-                    OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                    Efficiencies = cms.PSet(),
-                    )
-                    process.TnP_MuonID.WeightVariable = cms.string("weight")
-                    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
-                elif order == 'NLO':
-                    process.TnP_MuonID = Template.clone(
-                    InputFileNames = cms.vstring(
-                    'root://eoscms//eos/cms/store/group/phys_muon/perrin/v3/SmallTree_TnP_trees_aod747_DY_amcatnlo_50ns_withFixes_withNVtxWeights_WithWeights_2015C.root'
-                        ),
-                    InputTreeName = cms.string("fitter_tree"),
-                    InputDirectoryName = cms.string("tpTree"),
-                    OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                    Efficiencies = cms.PSet(),
-                    )
-                    process.TnP_MuonID.WeightVariable = cms.string("weight")
-                    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
-    elif bs == '25ns':
+    if bs == '25ns':
         if run == '2015D':
-                if order== 'LO':
-                    process.TnP_MuonID = Template.clone(
-                    InputFileNames = cms.vstring(
-                    '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso.root'
-                        ),
-                    InputTreeName = cms.string("fitter_tree"),
-                    InputDirectoryName = cms.string("tpTree"),
-                    OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                    Efficiencies = cms.PSet(),
-                    )
-                    process.TnP_MuonID.WeightVariable = cms.string("weight")
-                    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
-                elif order == 'NLO':
-                    process.TnP_MuonID = Template.clone(
-                    #FILL this
-                    InputFileNames = cms.vstring(
-                    '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso.root'
-                        ),
-                    InputTreeName = cms.string("fitter_tree"),
-                    InputDirectoryName = cms.string("tpTree"),
-                    OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
-                    Efficiencies = cms.PSet(),
-                    )
-                    process.TnP_MuonID.WeightVariable = cms.string("weight")
-                    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
+            if order== 'LO':
+                process.TnP_MuonID = Template.clone(
+                InputFileNames = cms.vstring(
+                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso.root'
+                    ),
+                InputTreeName = cms.string("fitter_tree"),
+                InputDirectoryName = cms.string("tpTree"),
+                OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
+                Efficiencies = cms.PSet(),
+                )
+                process.TnP_MuonID.WeightVariable = cms.string("weight")
+                process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
+            elif order == 'NLO':
+                process.TnP_MuonID = Template.clone(
+                InputFileNames = cms.vstring(
+                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso.root'
+                    ),
+                InputTreeName = cms.string("fitter_tree"),
+                InputDirectoryName = cms.string("tpTree"),
+                OutputFileName = cms.string("TnP_MuonID_%s.root" % scenario),
+                Efficiencies = cms.PSet(),
+                )
+                process.TnP_MuonID.WeightVariable = cms.string("weight")
+                process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
 
 ID_BINS = []
 
@@ -483,62 +389,18 @@ if id_bins == '10':
     (("TightMiniIso4"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
     (("TightMiniIso4"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
     ]
-#TEST
-#Loose ID
-if TEST_id_bins == '1':
+if id_bins == '11':
     ID_BINS = [
-    (("Loose_noIP"), ("eta", ETA_BINS)),
-    ]
-#Medium ID
-if TEST_id_bins == '2':
-    ID_BINS = [
-    (("Medium_noIP"), ("eta", ETA_BINS)),
-    ]
-#_*_*_*_*_*_*_*_*_*_*
-#IPs
-#_*_*_*_*_*_*_*_*_*_*
-if TEST_id_bins == '3':
-    ID_BINS = [
-    (("TightIP2D"), ("loose_eta", LOOSE_ETA_BINS)),
-    ]
-if TEST_id_bins == '4':
-    ID_BINS = [
-    (("TightIP2D"), ("medium_eta", MEDIUM_ETA_BINS)),
-    ]
-if TEST_id_bins == '5':
-    ID_BINS = [
-    (("TightIP3D"), ("loose_eta", LOOSE_ETA_BINS)),
-    ]
-if TEST_id_bins == '6':
-    ID_BINS = [
-    (("TightIP3D"), ("medium_eta", MEDIUM_ETA_BINS)),
-    ]
-#_*_*_*_*_*_*_*_*_*_*
-#ISOs
-#_*_*_*_*_*_*_*_*_*_*
-#Loose MiniIso
-if TEST_id_bins == '7':
-    ID_BINS = [
-    (("LooseMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
-    ]
-if TEST_id_bins == '8':
-    ID_BINS = [
-    (("LooseMiniIso"), ("medium_eta", MEDIUM_ETA_BINS)),
-    ]
-#Tight MiniIso
-if TEST_id_bins == '9':
-    ID_BINS = [
-    (("TightMiniIso"), ("tightip_eta", TIGHT_ETA_BINS)),
-    ]
-if TEST_id_bins == '10':
-    ID_BINS = [
-    (("TightMiniIso"), ("medium_eta", MEDIUM_ETA_BINS)),
+    (("MediumMultiIso"), ("medium_eta", MEDIUM_ETA_BINS)),
+    (("MediumMultiIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
+    (("MediumMultiIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
+    (("MediumMultiIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
     ]
 
 for ID, ALLBINS in ID_BINS:
     X = ALLBINS[0]
     B = ALLBINS[1]
-    _output = os.getcwd() + '/Efficiency4'
+    _output = os.getcwd() + '/Efficiency'
     if not os.path.exists(_output):
         print 'Creating Efficiency directory where the fits are stored'  
         os.makedirs(_output)
@@ -560,37 +422,15 @@ for ID, ALLBINS in ID_BINS:
         BinnedVariables = DEN,
         BinToPDFmap = cms.vstring(shape)
         ))
-        #if num.find("MiniIso") != -1: 
-        #    setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
-        #        EfficiencyCategoryAndState = cms.vstring(num,"below"),
-        #        UnbinnedVariables = cms.vstring("mass"),
-        #        BinnedVariables = DEN,
-        #        BinToPDFmap = cms.vstring(shape)
-        #        ))
-        #else:
-        #    setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
-        #        EfficiencyCategoryAndState = cms.vstring(num,"above"),
-        #        UnbinnedVariables = cms.vstring("mass"),
-        #        BinnedVariables = DEN,
-        #        BinToPDFmap = cms.vstring(shape)
-        #        ))
         setattr(process, "TnP_MuonID_"+ID+"_"+X, module)        
         setattr(process, "run_"+ID+"_"+X, cms.Path(module))
     elif scenario == 'mc_all':
-        if num.find("MiniIso") != -1: 
-            setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
-                EfficiencyCategoryAndState = cms.vstring(num,"below"),
-                UnbinnedVariables = cms.vstring("mass","weight"),
-                BinnedVariables = DEN,
-                BinToPDFmap = cms.vstring(shape)
-                ))
-        else:
-            setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
-                EfficiencyCategoryAndState = cms.vstring(num,"above"),
-                UnbinnedVariables = cms.vstring("mass","weight"),
-                BinnedVariables = DEN,
-                BinToPDFmap = cms.vstring(shape)
-                ))
+        setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
+        EfficiencyCategoryAndState = cms.vstring(num,"above"),
+        UnbinnedVariables = cms.vstring("mass","weight"),
+        BinnedVariables = DEN,
+        BinToPDFmap = cms.vstring(shape)
+        ))
         setattr(process, "TnP_MuonID_"+ID+"_"+X, module)        
         setattr(process, "run_"+ID+"_"+X, cms.Path(module))
 
