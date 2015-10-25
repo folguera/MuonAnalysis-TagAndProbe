@@ -12,7 +12,7 @@ def getplotpath(_file, _path, _tptree):
     for file in dir:
         if file == 'Plots': continue
         if not file == _file: continue
-        print "The file is", file
+        #print "The file is", file
         f = r.TFile.Open(_path+file)
         r.gDirectory.cd(_tptree)
         for key in  r.gDirectory.GetListOfKeys():
@@ -21,7 +21,6 @@ def getplotpath(_file, _path, _tptree):
             r.gDirectory.cd('fit_eff_plots')
             PLOTS = r.gDirectory.GetListOfKeys()
             PAR = getparameter(_file)
-            #print "PAR is", PAR
             for plot in PLOTS:
                 print 'plot is', plot.GetName()
                 for par in PAR:
@@ -29,12 +28,8 @@ def getplotpath(_file, _path, _tptree):
                         print '============\n'
                         print 'name checked'
                         print '============\n'
-
                         _canvas = _tptree + '/' + key.GetName() + '/fit_eff_plots' +'/' + plot.GetName() 
                         CANVAS.append(_canvas)
-                        #print "_canvas is", _canvas
-    #print '\nEnd getplotpath'
-    #print '=================\n'
     return CANVAS
 
 def getparameter(_file):
@@ -47,9 +42,9 @@ def getparameter(_file):
     elif _file.find('pt_highabseta') != -1:_par.append('pt_PLOT')
     elif _file.find('_vtx') != -1: _par.append('tag_nVertices_PLOT')
     elif _file.find('_phi') != -1: _par.append('phi_PLOT')
-    elif _file.find('activity') != -1: _par.append('pfCombAbsActivitydBCorr_PLOT')
+    elif _file.find('activity') != -1: _par.append('pfCombRelActivitydBCorr_PLOT')
     else: 
-        #print "@ERROR: parameter not found !"
+        print "@ERROR: parameter not found !"
         sys.exit()
     return _par
 
@@ -108,32 +103,22 @@ elif scenario1 == scenario2 and scenario1 == 'MC': comparison = 'mcmc'
 _output += '/' + scenario1 + bspace1 + run1 + order1 + '_' + scenario2 + bspace2 + run2 + order2 +'/'
 if not os.path.exists(_output): 
     os.makedirs(_output)
-##print '_output is ', _output
 if not os.path.exists(_output):
     os.makedirs(_output)
 
-##print 'path1 is', _path1
-##print 'path2 is', _path2
 _tptree = 'tpTree'
 
 ##!! Get the list of files
 dir = os.listdir(_path1)
 for file in dir:
-    ##print 'the file is ', file
-    if file.find("activity") != -1:
-        print '=============================='
-        print 'ACIVITY !!!'
-        print '=============================='
+    if debug: print 'the file is ', file
     if file.find('TnP_MuonID') != -1: 
         if not os.path.isfile(_path2 + '/' + file):
-            sys.exit()
+            if debug: print 'The file ', file, 'doesn\'t exist in ', _path2
             continue
-            #if debug: #print 'The file ', file, 'doesn\'t exist in ', _path2
         else:
-            #if debug: #print 'The file', file, 'exists !'
+            if debug: print 'The file', file, 'exists !'
             CANVAS = getplotpath( file, _path1, _tptree)
-            #print "hello"
-            #print "CANVAS is", CANVAS
+            if debug: print "CANVAS is", CANVAS
             for _canvas in CANVAS:
-                #print 'will retrieve the canvas ', _canvas
                 r.make_ratioplots(file, _canvas, _path1, _path2, _output, comparison)
