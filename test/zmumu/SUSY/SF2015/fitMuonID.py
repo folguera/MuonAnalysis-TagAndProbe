@@ -49,6 +49,7 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         phi    = cms.vstring("muon #phi at vertex", "-3.1416", "3.1416", ""),
         charge = cms.vstring("muon charge", "-2.5", "2.5", ""),
         combRelIsoPF04dBeta = cms.vstring("dBeta rel iso dR 0.4", "-2", "9999999", ""),
+        pfCombRelActivitydBCorr = cms.vstring("Rel. Activity", "-2", "40", ""),
         pfCombRelMiniIsoEACorr = cms.vstring("EA rel Mini Iso", "-2", "9999999",""),
         PtRel = cms.vstring("PtRel", "-2", "9999999",""),
         PtRatio = cms.vstring("PtRatio", "-2", "9999999",""),
@@ -178,7 +179,6 @@ PT_ETA_BINS1 = cms.PSet(
     tag_IsoMu20 = cms.vstring("pass"), 
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
-
 #For IP on ID
 LOOSE_ETA_BINS = cms.PSet(
     pt  = cms.vdouble(10, 500),
@@ -214,6 +214,62 @@ LOOSE_PT_ALLETA_BINS1 = cms.PSet(
 LOOSE_PT_ETA_BINS1 = cms.PSet(
     pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble(  0.0, 1.2, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    PF = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+LOOSE_PT_ACTIVITY_BARREL = cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(10, 500),
+    abseta = cms.vdouble( 0, 1.2),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    PF = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+LOOSE_PT_ACTIVITY_ENDCAP = cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(10, 500),
+    abseta = cms.vdouble( 1.2, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    PF = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+#
+LOOSE_PT_ACTIVITY_PTLOW = cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(10, 40),
+    abseta = cms.vdouble( 0, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    PF = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+LOOSE_PT_ACTIVITY_PTMED= cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(40, 80),
+    abseta = cms.vdouble( 0, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    PF = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+LOOSE_PT_ACTIVITY_PTHIGH= cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(80, 200),
+    abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     PF = cms.vstring("pass"), 
     #tag selections
@@ -262,14 +318,69 @@ MEDIUM_PT_ETA_BINS1 = cms.PSet(
     tag_pt = cms.vdouble(21, 500),
     tag_IsoMu20 = cms.vstring("pass"), 
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
-    
+)
+MEDIUM_PT_ACTIVITY_BARREL = cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(10, 500),
+    abseta = cms.vdouble( 0, 1.2),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    Medium = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+MEDIUM_PT_ACTIVITY_ENDCAP = cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(10, 500),
+    abseta = cms.vdouble( 1.2, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    Medium = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+#
+MEDIUM_PT_ACTIVITY_PTLOW= cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(10, 40),
+    abseta = cms.vdouble( 0, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    Medium = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+MEDIUM_PT_ACTIVITY_PTMED= cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(40, 80),
+    abseta = cms.vdouble( 0, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    Medium = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
+)
+MEDIUM_PT_ACTIVITY_PTHIGH= cms.PSet(
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pt     = cms.vdouble(80, 200),
+    abseta = cms.vdouble( 0, 2.4),
+    pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
+    Medium = cms.vstring("pass"), 
+    #tag selections
+    tag_pt = cms.vdouble(21, 500),
+    tag_IsoMu20 = cms.vstring("pass"), 
+    tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 if scenario == 'data_all':
     if bs == '25ns':
         if run == '2015D':
             process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                    '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso.root',
+                    '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root',
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -282,7 +393,7 @@ elif scenario == 'mc_all':
             if order== 'LO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso.root'
+                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -294,7 +405,7 @@ elif scenario == 'mc_all':
             elif order == 'NLO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso.root'
+                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -362,45 +473,61 @@ if id_bins == '6':
 #Loose MiniIso
 if id_bins == '7':
     ID_BINS = [
-    (("LooseMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
-    (("LooseMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
-    (("LooseMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
-    (("LooseMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
-    ]
-if id_bins == '8':
-    ID_BINS = [
-    (("LooseMiniIso"), ("medium_eta", MEDIUM_ETA_BINS)),
-    (("LooseMiniIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
-    (("LooseMiniIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
-    (("LooseMiniIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
+    #(("LooseMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
+    #(("LooseMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
+    #(("LooseMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
+    #(("LooseMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
+    (("LooseMiniIso"), ("loose_pt_activity_barrel", LOOSE_PT_ACTIVITY_BARREL)),
+    (("LooseMiniIso"), ("loose_pt_activity_endcap", LOOSE_PT_ACTIVITY_ENDCAP)),
+    (("LooseMiniIso"), ("loose_pt_activity_lowpt", LOOSE_PT_ACTIVITY_PTLOW)),
+    (("LooseMiniIso"), ("loose_pt_activity_medpt", LOOSE_PT_ACTIVITY_PTMED)),
+    (("LooseMiniIso"), ("loose_pt_activity_highpt", LOOSE_PT_ACTIVITY_PTHIGH)),
     ]
 #Tight MiniIso
+if id_bins == '8':
+    ID_BINS = [
+    #(("TightMiniIso"), ("medium_eta", MEDIUM_ETA_BINS)),
+    #(("TightMiniIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
+    #(("TightMiniIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
+    #(("TightMiniIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
+    (("TightMiniIso"), ("medium_pt_activity_barrel", MEDIUM_PT_ACTIVITY_BARREL)),
+    (("TightMiniIso"), ("medium_pt_activity_endcap", MEDIUM_PT_ACTIVITY_ENDCAP)),
+    (("TightMiniIso"), ("medium_pt_activity_lowpt", MEDIUM_PT_ACTIVITY_PTLOW)),
+    (("TightMiniIso"), ("medium_pt_activity_medpt", MEDIUM_PT_ACTIVITY_PTMED)),
+    (("TightMiniIso"), ("medium_pt_activity_highpt", MEDIUM_PT_ACTIVITY_PTHIGH)),
+    ]
 if id_bins == '9':
     ID_BINS = [
-    (("TightMiniIso4"), ("tightip_eta", TIGHT_ETA_BINS)),
-    (("TightMiniIso4"), ("tightip_vtx_bin1_24", TIGHT_VTX_BINS_ETA24 )),
-    (("TightMiniIso4"), ("tightip_pt_alleta_bin1", TIGHT_PT_ALLETA_BINS1)),
-    (("TightMiniIso4"), ("tightip_pt_spliteta_bin1", TIGHT_PT_ETA_BINS1)),
+    #(("TightMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
+    #(("TightMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
+    #(("TightMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
+    #(("TightMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
+    (("TightMiniIso"), ("loose_pt_activity_barrel", LOOSE_PT_ACTIVITY_BARREL)),
+    (("TightMiniIso"), ("loose_pt_activity_endcap", LOOSE_PT_ACTIVITY_ENDCAP)),
+    (("TightMiniIso"), ("loose_pt_activity_lowpt", LOOSE_PT_ACTIVITY_PTLOW)),
+    (("TightMiniIso"), ("loose_pt_activity_medpt", LOOSE_PT_ACTIVITY_PTMED)),
+    (("TightMiniIso"), ("loose_pt_activity_highpt", LOOSE_PT_ACTIVITY_PTHIGH)),
     ]
+#MultiIso
 if id_bins == '10':
     ID_BINS = [
-    (("TightMiniIso4"), ("medium_eta", MEDIUM_ETA_BINS)),
-    (("TightMiniIso4"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
-    (("TightMiniIso4"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
-    (("TightMiniIso4"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
-    ]
-if id_bins == '11':
-    ID_BINS = [
-    (("MediumMultiIso"), ("medium_eta", MEDIUM_ETA_BINS)),
-    (("MediumMultiIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
-    (("MediumMultiIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
-    (("MediumMultiIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
+    #(("MediumMultiIso"), ("medium_eta", MEDIUM_ETA_BINS)),
+    #(("MediumMultiIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
+    #(("MediumMultiIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
+    #(("MediumMultiIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
+    (("MediumMultiIso"), ("medium_pt_activity_barrel", MEDIUM_PT_ACTIVITY_BARREL)),
+    (("MediumMultiIso"), ("medium_pt_activity_endcap", MEDIUM_PT_ACTIVITY_ENDCAP)),
+    (("MediumMultiIso"), ("medium_pt_activity_lowpt", MEDIUM_PT_ACTIVITY_PTLOW)),
+    (("MediumMultiIso"), ("medium_pt_activity_medpt", MEDIUM_PT_ACTIVITY_PTMED)),
+    (("MediumMultiIso"), ("medium_pt_activity_highpt", MEDIUM_PT_ACTIVITY_PTHIGH)),
     ]
 
 for ID, ALLBINS in ID_BINS:
     X = ALLBINS[0]
     B = ALLBINS[1]
-    _output = os.getcwd() + '/Efficiency'
+    print 'X is', X
+    print 'B is', B
+    _output = os.getcwd() + '/Efficiency10'
     if not os.path.exists(_output):
         print 'Creating Efficiency directory where the fits are stored'  
         os.makedirs(_output)
