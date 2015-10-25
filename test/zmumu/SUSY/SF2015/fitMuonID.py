@@ -83,7 +83,6 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         #ID no IP 
         Loose_noIPVar = cms.vstring("Loose_noIPVar", "PF==1", "PF"),
         Medium_noIPVar= cms.vstring("Medium_noIPVar", "Medium==1", "Medium"),
-        Tight2012_zIPCutVar = cms.vstring("Tight2012_zIPCut", "Tight2012 == 1 && abs(dzPV) < 0.5", "Tight2012", "dzPV"),
         #Mini Iso
         LooseMiniIsoVar = cms.vstring("LooseMiniIsoVar" ,"pfCombRelMiniIsoEACorr < 0.4", "pfCombRelMiniIsoEACorr"),
         TightMiniIsoVar = cms.vstring("TightMiniIsoVar" ,"pfCombRelMiniIsoEACorr < 0.2", "pfCombRelMiniIsoEACorr"),
@@ -433,7 +432,6 @@ elif scenario == 'mc_all':
                 process.TnP_MuonID.WeightVariable = cms.string("weight")
                 process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
 
-ID_BINS = []
 
 #_*_*_*_*_*_*_*_*_*_*_*_*_*_*
 #Choose Numerator/Denominator
@@ -548,6 +546,8 @@ if id_bins == '10':
 #_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
 #Produce the efficiency .root files
 #_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+
+ID_BINS = []
 
 for ID, ALLBINS in ID_BINS:
     X = ALLBINS[0]
