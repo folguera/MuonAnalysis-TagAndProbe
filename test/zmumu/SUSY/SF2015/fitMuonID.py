@@ -1,10 +1,8 @@
 import FWCore.ParameterSet.Config as cms
-### USAGE:
-###    cmsRun fitMuonID.py <scenario> [ <id> [ <binning1> ... <binningN> ] ]
-###
-### scenarios:
-###   - data_all (default)  
-###   - signal_mc
+
+#_*_*_*_*_*_*_*_*
+#Input parameters
+#_*_*_*_*_*_*_*_*
 
 import sys, os
 args = sys.argv[1:]
@@ -35,6 +33,10 @@ process = cms.Process("TagProbe")
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.source = cms.Source("EmptySource")
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1) )
+
+#_*_*_*_*_*_*_*_*_*_*_*_*
+#Preparing the variables
+#_*_*_*_*_*_*_*_*_*_*_*_*
 
 Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         NumCPU = cms.uint32(1),
@@ -101,6 +103,9 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         MediumMultiIso= cms.vstring("MediumMultiIso" ,"MediumMultiIsoVar", "0.5"),
     ),
 
+#_*_*_*_*_*_*_*_*_*_*_*_*_*
+#Functions used for the fit
+#_*_*_*_*_*_*_*_*_*_*_*_*_*
                           
     PDFs = cms.PSet(
         voigtPlusExpo = cms.vstring(
@@ -138,8 +143,9 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
 )
 
 #_*_*_*_*_*_*_*_*_*_*_*_*
-#Denominators and Binning
+#Denominators and binning
 #_*_*_*_*_*_*_*_*_*_*_*_*
+
 #For ID
 
 ETA_BINS = cms.PSet(
@@ -375,12 +381,17 @@ MEDIUM_PT_ACTIVITY_PTHIGH= cms.PSet(
     tag_IsoMu20 = cms.vstring("pass"), 
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
+
+#_*_*_*_
+#Samples
+#_*_*_*_
+
 if scenario == 'data_all':
     if bs == '25ns':
         if run == '2015D':
             process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                    '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root',
+                    'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -393,7 +404,7 @@ elif scenario == 'mc_all':
             if order== 'LO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
+                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -405,7 +416,7 @@ elif scenario == 'mc_all':
             elif order == 'NLO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                '/afs/cern.ch/work/g/gaperrin/private/TnP/TnP_v3/CMSSW_7_4_10/src/MuonAnalysis/TagAndProbe/test/zmumu/SUSY/Production/Ntuples_v0/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
+                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -417,9 +428,14 @@ elif scenario == 'mc_all':
 
 ID_BINS = []
 
-#_*_*_*_*_*_*_*_*_*_*
+#_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+#Choose Numerator/Denominator
+#_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+
+
+#_*_
 #IDs
-#_*_*_*_*_*_*_*_*_*_*
+#_*_
 #Loose ID
 if id_bins == '1':
     ID_BINS = [
@@ -436,9 +452,9 @@ if id_bins == '2':
     (("Medium_noIP"), ("pt_alleta_bin1", PT_ALLETA_BINS1)),
     (("Medium_noIP"), ("pt_spliteta_bin1", PT_ETA_BINS1)),
     ]
-#_*_*_*_*_*_*_*_*_*_*
+#_*_
 #IPs
-#_*_*_*_*_*_*_*_*_*_*
+#_*_
 if id_bins == '3':
     ID_BINS = [
     (("TightIP2D"), ("loose_eta", LOOSE_ETA_BINS)),
@@ -467,16 +483,16 @@ if id_bins == '6':
     (("TightIP3D"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
     (("TightIP3D"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
     ]
-#_*_*_*_*_*_*_*_*_*_*
+#_*_*
 #ISOs
-#_*_*_*_*_*_*_*_*_*_*
+#_*_*
 #Loose MiniIso
 if id_bins == '7':
     ID_BINS = [
-    #(("LooseMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
-    #(("LooseMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
-    #(("LooseMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
-    #(("LooseMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
+    (("LooseMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
+    (("LooseMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
+    (("LooseMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
+    (("LooseMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
     (("LooseMiniIso"), ("loose_pt_activity_barrel", LOOSE_PT_ACTIVITY_BARREL)),
     (("LooseMiniIso"), ("loose_pt_activity_endcap", LOOSE_PT_ACTIVITY_ENDCAP)),
     (("LooseMiniIso"), ("loose_pt_activity_lowpt", LOOSE_PT_ACTIVITY_PTLOW)),
@@ -486,10 +502,10 @@ if id_bins == '7':
 #Tight MiniIso
 if id_bins == '8':
     ID_BINS = [
-    #(("TightMiniIso"), ("medium_eta", MEDIUM_ETA_BINS)),
-    #(("TightMiniIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
-    #(("TightMiniIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
-    #(("TightMiniIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
+    (("TightMiniIso"), ("medium_eta", MEDIUM_ETA_BINS)),
+    (("TightMiniIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
+    (("TightMiniIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
+    (("TightMiniIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
     (("TightMiniIso"), ("medium_pt_activity_barrel", MEDIUM_PT_ACTIVITY_BARREL)),
     (("TightMiniIso"), ("medium_pt_activity_endcap", MEDIUM_PT_ACTIVITY_ENDCAP)),
     (("TightMiniIso"), ("medium_pt_activity_lowpt", MEDIUM_PT_ACTIVITY_PTLOW)),
@@ -498,10 +514,10 @@ if id_bins == '8':
     ]
 if id_bins == '9':
     ID_BINS = [
-    #(("TightMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
-    #(("TightMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
-    #(("TightMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
-    #(("TightMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
+    (("TightMiniIso"), ("loose_eta", LOOSE_ETA_BINS)),
+    (("TightMiniIso"), ("loose_vtx_bin1_24", LOOSE_VTX_BINS_ETA24 )),
+    (("TightMiniIso"), ("loose_pt_alleta_bin1", LOOSE_PT_ALLETA_BINS1)),
+    (("TightMiniIso"), ("loose_pt_spliteta_bin1", LOOSE_PT_ETA_BINS1)),
     (("TightMiniIso"), ("loose_pt_activity_barrel", LOOSE_PT_ACTIVITY_BARREL)),
     (("TightMiniIso"), ("loose_pt_activity_endcap", LOOSE_PT_ACTIVITY_ENDCAP)),
     (("TightMiniIso"), ("loose_pt_activity_lowpt", LOOSE_PT_ACTIVITY_PTLOW)),
@@ -511,10 +527,10 @@ if id_bins == '9':
 #MultiIso
 if id_bins == '10':
     ID_BINS = [
-    #(("MediumMultiIso"), ("medium_eta", MEDIUM_ETA_BINS)),
-    #(("MediumMultiIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
-    #(("MediumMultiIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
-    #(("MediumMultiIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
+    (("MediumMultiIso"), ("medium_eta", MEDIUM_ETA_BINS)),
+    (("MediumMultiIso"), ("medium_vtx_bin1_24", MEDIUM_VTX_BINS_ETA24 )),
+    (("MediumMultiIso"), ("medium_pt_alleta_bin1", MEDIUM_PT_ALLETA_BINS1)),
+    (("MediumMultiIso"), ("medium_pt_spliteta_bin1", MEDIUM_PT_ETA_BINS1)),
     (("MediumMultiIso"), ("medium_pt_activity_barrel", MEDIUM_PT_ACTIVITY_BARREL)),
     (("MediumMultiIso"), ("medium_pt_activity_endcap", MEDIUM_PT_ACTIVITY_ENDCAP)),
     (("MediumMultiIso"), ("medium_pt_activity_lowpt", MEDIUM_PT_ACTIVITY_PTLOW)),
@@ -522,17 +538,21 @@ if id_bins == '10':
     (("MediumMultiIso"), ("medium_pt_activity_highpt", MEDIUM_PT_ACTIVITY_PTHIGH)),
     ]
 
+#_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+#Produce the efficiency .root files
+#_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+
 for ID, ALLBINS in ID_BINS:
     X = ALLBINS[0]
     B = ALLBINS[1]
     print 'X is', X
     print 'B is', B
-    _output = os.getcwd() + '/Efficiency10'
+    _output = os.getcwd() + '/Efficiency' + scenario
     if not os.path.exists(_output):
         print 'Creating Efficiency directory where the fits are stored'  
         os.makedirs(_output)
     if scenario == 'data_all':
-        _output += '/DATA' + bs + run + 'eff'
+        _output += '/DATA' + bs + run 
     elif scenario == 'mc_all':
         _output += '/MC' + bs + run + order
     if not os.path.exists(_output):
