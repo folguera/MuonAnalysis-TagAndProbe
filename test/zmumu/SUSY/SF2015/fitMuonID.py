@@ -6,27 +6,30 @@ import FWCore.ParameterSet.Config as cms
 
 import sys, os
 args = sys.argv[1:]
+iteration = 1
+if len(args) > 1: iteration = args[1]
+print "The iteration is", iteration 
+id_bins = '1'
+if len(args) > 2: 
+    id_bins = args[2]
+print 'id_bins is', id_bins
 scenario = "data_all"
-if len(args) > 1: scenario = args[1]
+if len(args) > 3: scenario = args[3]
 print "Will run scenario ", scenario 
 bs = '25ns'
-if len(args) > 2: 
-    bs = args[2]
+if len(args) > 4: 
+    bs = args[4]
 print 'the bunch spacing is', bs 
 run = '2015D' 
-if len(args) > 3: 
-    run  = args[3]
+if len(args) > 5: 
+    run  = args[5]
 print 'run is', run
-id_bins = '-1'
-if len(args) > 4: 
-    id_bins = args[4]
-print 'id_bins is', id_bins
 #for MC
 order = 'LO'
-if len(args) > 5: 
+if len(args) > 6: 
     if scenario == 'data_all':
         print "@WARINING: no order variable is necessasry for data"
-    order = args[5]
+    order = args[6]
 print 'order is', order
 
 process = cms.Process("TagProbe")
@@ -87,6 +90,10 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         #Multi Iso
         MediumMultiIsoVar= cms.vstring("MediumMultIsoVar" ,"pfCombRelMiniIsoEACorr < 0.16 && ( PtRel > 7.2 || PtRatio > 0.76 )", "pfCombRelMiniIsoEACorr", "PtRel", "PtRatio"),
     ),
+
+#_*_*_*_*_*
+#Numerators
+#_*_*_*_*_*
 
     Cuts = cms.PSet(
         #IP
@@ -185,7 +192,7 @@ PT_ETA_BINS1 = cms.PSet(
     tag_IsoMu20 = cms.vstring("pass"), 
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
-#For IP on ID
+#For IP,ISO on ID
 LOOSE_ETA_BINS = cms.PSet(
     pt  = cms.vdouble(10, 500),
     eta = cms.vdouble(-2.4, -2.1, -1.6, -1.2, -0.9, -0.3, -0.2, 0.2, 0.3, 0.9, 1.2, 1.6, 2.1, 2.4),
@@ -545,11 +552,9 @@ if id_bins == '10':
 for ID, ALLBINS in ID_BINS:
     X = ALLBINS[0]
     B = ALLBINS[1]
-    print 'X is', X
-    print 'B is', B
-    _output = os.getcwd() + '/Efficiency' + scenario
+    _output = os.getcwd() + '/Efficiency' + iteration
     if not os.path.exists(_output):
-        print 'Creating Efficiency directory where the fits are stored'  
+        print 'Creating', _output, 'directory where the fits are stored'  
         os.makedirs(_output)
     if scenario == 'data_all':
         _output += '/DATA' + bs + run 
