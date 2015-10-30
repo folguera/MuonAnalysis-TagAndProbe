@@ -54,7 +54,7 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         phi    = cms.vstring("muon #phi at vertex", "-3.1416", "3.1416", ""),
         charge = cms.vstring("muon charge", "-2.5", "2.5", ""),
         combRelIsoPF04dBeta = cms.vstring("dBeta rel iso dR 0.4", "-2", "9999999", ""),
-        pfCombRelActivitydBCorr = cms.vstring("Rel. Activity", "-2", "40", ""),
+        pfCombRelActivitydBCorr = cms.vstring("Rel. Activity", "-2", "9999999", ""),
         pfCombRelMiniIsoEACorr = cms.vstring("EA rel Mini Iso", "-2", "9999999",""),
         PtRel = cms.vstring("PtRel", "-2", "9999999",""),
         PtRatio = cms.vstring("PtRatio", "-2", "9999999",""),
@@ -62,7 +62,6 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         tag_nVertices   = cms.vstring("Number of vertices", "0", "999", ""),
         tag_abseta = cms.vstring("|eta| of tag muon", "0", "2.5", ""),
         tag_combRelIsoPF04dBeta = cms.vstring("Tag dBeta rel iso dR 0.4", "-2", "9999999", ""),
-        dB = cms.vstring("dB", "-1000", "1000", ""),
         dzPV = cms.vstring("dzPV", "-1000", "1000", ""),
         dxyBS = cms.vstring("dxyBS", "-1000", "1000", ""),
         SIP = cms.vstring("SIP", "-1000", "1000", ""),
@@ -72,7 +71,6 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
     Categories = cms.PSet(
         PF    = cms.vstring("PF Muon", "dummy[pass=1,fail=0]"),
         Medium   = cms.vstring("Medium Id. Muon", "dummy[pass=1,fail=0]"),
-        Tight2012 = cms.vstring("Tight Id. Muon", "dummy[pass=1,fail=0]"),
         tag_IsoMu20 = cms.vstring("PF Muon", "dummy[pass=1,fail=0]"),
     ),
 
@@ -101,7 +99,6 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         #ID no IP
         Loose_noIP = cms.vstring("Loose_noIP", "Loose_noIPVar", "0.5"),
         Medium_noIP= cms.vstring("Medium_noIP", "Medium_noIPVar", "0.5"),
-        Tight2012_zIPCut = cms.vstring("Tight2012_zIPCut", "Tight2012_zIPCutVar", "0.5"),
         #MiniIsolations
         LooseMiniIso = cms.vstring("LooseMiniIso" ,"LooseMiniIsoVar", "0.5"),
         TightMiniIso = cms.vstring("TightMiniIso" ,"TightMiniIsoVar", "0.5"),
@@ -165,7 +162,7 @@ ETA_BINS = cms.PSet(
 )
 VTX_BINS_ETA24  = cms.PSet(
     pt     = cms.vdouble(10 , 500),
-    abseta = cms.vdouble(  0.0, 2.4),
+    abseta = cms.vdouble(0.0, 2.4),
     tag_nVertices = cms.vdouble(0.5,2.5,4.5,6.5,8.5,10.5,12.5,14.5,16.5,18.5,20.5,22.5,24.5,26.5,28.5,30.5),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
@@ -174,7 +171,7 @@ VTX_BINS_ETA24  = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 PT_ALLETA_BINS1 = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(5, 10, 20, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble(  0.0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
@@ -183,7 +180,7 @@ PT_ALLETA_BINS1 = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 PT_ETA_BINS1 = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(5, 10, 20, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble( 0.0, 1.2, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
@@ -234,7 +231,7 @@ LOOSE_PT_ETA_BINS1 = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 LOOSE_PT_ACTIVITY_BARREL = cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(10, 500),
     abseta = cms.vdouble( 0, 1.2),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -245,7 +242,7 @@ LOOSE_PT_ACTIVITY_BARREL = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 LOOSE_PT_ACTIVITY_ENDCAP = cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(10, 500),
     abseta = cms.vdouble( 1.2, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -257,7 +254,7 @@ LOOSE_PT_ACTIVITY_ENDCAP = cms.PSet(
 )
 #
 LOOSE_PT_ACTIVITY_PTLOW = cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(10, 40),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -268,7 +265,7 @@ LOOSE_PT_ACTIVITY_PTLOW = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 LOOSE_PT_ACTIVITY_PTMED= cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(40, 80),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -279,7 +276,7 @@ LOOSE_PT_ACTIVITY_PTMED= cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 LOOSE_PT_ACTIVITY_PTHIGH= cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(80, 200),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -332,7 +329,7 @@ MEDIUM_PT_ETA_BINS1 = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 MEDIUM_PT_ACTIVITY_BARREL = cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(10, 500),
     abseta = cms.vdouble( 0, 1.2),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -343,7 +340,7 @@ MEDIUM_PT_ACTIVITY_BARREL = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 MEDIUM_PT_ACTIVITY_ENDCAP = cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(10, 500),
     abseta = cms.vdouble( 1.2, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -355,7 +352,7 @@ MEDIUM_PT_ACTIVITY_ENDCAP = cms.PSet(
 )
 #
 MEDIUM_PT_ACTIVITY_PTLOW= cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(10, 40),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -366,7 +363,7 @@ MEDIUM_PT_ACTIVITY_PTLOW= cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 MEDIUM_PT_ACTIVITY_PTMED= cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(40, 80),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -377,7 +374,7 @@ MEDIUM_PT_ACTIVITY_PTMED= cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 MEDIUM_PT_ACTIVITY_PTHIGH= cms.PSet(
-    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1),
+    pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
     pt     = cms.vdouble(80, 200),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
@@ -437,6 +434,7 @@ elif scenario == 'mc_all':
 #Choose Numerator/Denominator
 #_*_*_*_*_*_*_*_*_*_*_*_*_*_*
 
+ID_BINS = []
 
 #_*_
 #IDs
@@ -547,7 +545,6 @@ if id_bins == '10':
 #Produce the efficiency .root files
 #_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
 
-ID_BINS = []
 
 for ID, ALLBINS in ID_BINS:
     X = ALLBINS[0]
