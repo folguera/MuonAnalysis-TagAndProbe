@@ -1,35 +1,35 @@
 #!/bin/bash
 
-bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 1
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 2
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 3
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 4
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 5
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 6
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 7
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 8 
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 9 
-#bsub -q 8nh -u pippo1234 run.sh data_all 25ns 2015D 10 
-##
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 1 NLO 
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 2 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 3 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 4 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 5 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 6 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 7 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 8 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 9 NLO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 10 NLO
-#
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 1 LO 
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 2 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 3 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 4 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 5 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 6 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 7 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 8 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 9 LO
-#bsub -q 8nh -u pippo1234 run.sh mc_all 25ns 2015D 10 LO
+bsub -q 8nh -u pippo1234 run.sh _151103 1 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 2 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 3 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 4 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 5 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 6 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 7 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 8 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 9 data_all 25ns 2015D
+bsub -q 8nh -u pippo1234 run.sh _151103 10 data_all 25ns 2015D
+
+bsub -q 8nh -u pippo1234 run.sh _151103 1 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 2 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 3 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 4 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 5 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 6 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 7 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 8 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 9 mc_all 25ns 2015D LO
+bsub -q 8nh -u pippo1234 run.sh _151103 10 mc_all 25ns 2015D LO
+
+bsub -q 8nh -u pippo1234 run.sh _151103 1 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 2 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 3 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 4 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 5 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 6 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 7 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 8 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 9 mc_all 25ns 2015D NLO
+bsub -q 8nh -u pippo1234 run.sh _151103 10 mc_all 25ns 2015D NLO
 
