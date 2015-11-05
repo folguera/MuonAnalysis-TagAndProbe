@@ -111,7 +111,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad1->cd();
     eff1->Draw("AP");
     eff1->SetTitle("");
-    eff1->GetYaxis()->SetTitle("Efficiency9");
+    eff1->GetYaxis()->SetTitle("Efficiency");
     eff1->GetXaxis()->SetRangeUser(x_low, x_hi);
     eff1->GetXaxis()->SetLabelOffset(999);
     eff1->GetXaxis()->SetLabelSize(0);
@@ -125,6 +125,10 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else{_xtitle = "Rel Activity";}
     eff1->GetXaxis()->SetTitle(_xtitle);
     TString _title = eff1->GetXaxis()->GetTitle();
+    if(_xtitle == "Rel Activity"){
+        eff1->GetXaxis()->SetRangeUser(0.001,10000);
+        pad1->SetLogx();
+    }   
     eff1->GetXaxis()->SetTitle("");
     eff1->GetYaxis()->SetRangeUser(0.899, 1.05);
     eff1->GetYaxis()->SetTitleSize(27);
@@ -427,9 +431,6 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
 
     c3->cd();
     TPad *pad2 = new TPad("pad2", "pad2", 0, 0., 1, 0.3);
-    if(_xtitle == "Soft Activity"){
-    pad2->SetLogx();
-    }
     pad2->SetTopMargin(0.0); 
     pad2->SetBottomMargin(0.35); 
     pad2->SetGridy(); 
@@ -457,6 +458,10 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     ratio->GetXaxis()->SetTitleSize(27);
     ratio->GetXaxis()->SetTitleOffset(3);
     ratio->GetXaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
+    if(_xtitle == "Rel Activity"){
+        ratio->GetXaxis()->SetRangeUser(0.001,10000);
+        pad2->SetLogx();
+    }   
     ratio->Draw();
     CMS_lumi(pad1, 4, 11);
     c3->Update();
