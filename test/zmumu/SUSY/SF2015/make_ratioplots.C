@@ -127,8 +127,8 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     eff1->GetXaxis()->SetTitle(_xtitle);
     TString _title = eff1->GetXaxis()->GetTitle();
     if(_xtitle == "Rel Activity"){
-        pad1->SetLogx();
-    }   
+       pad1->SetLogx();
+    }
     eff1->GetXaxis()->SetTitle("");
     eff1->GetYaxis()->SetRangeUser(0.885, 1.05);
     eff1->GetYaxis()->SetTitleSize(27);
@@ -137,10 +137,6 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     eff1->SetMarkerStyle(20);
     eff1->GetYaxis()->SetLabelSize(20);
     eff1->GetYaxis()->SetTitleOffset(1.5);
-    
-    float xmin = eff1->GetXaxis()->GetXmin();
-    float xmax = eff1->GetXaxis()->GetXmax();
-
     eff2->Draw("P");
     eff2->SetLineColor(4);
     eff2->SetMarkerStyle(21);
@@ -441,16 +437,16 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad2->Draw();
     pad2->cd();
     TH1* h;
-    //float xmin = 0.001;
-    //float xmax = 10000;
     float ymin = 0.950001;
     float ymax = 1.049999;
-
-    if(_xtitle == "Rel Activity")
+    float xmin = eff1->GetXaxis()->GetXmin();
+    float xmax = eff1->GetXaxis()->GetXmax();
+    if(_xtitle == "Rel Activity"){
         h = pad2->DrawFrame(xmin,ymin,xmax,ymax);
-    else 
-        h = ratio;
-
+    }
+    else{ 
+        h = pad2->DrawFrame(x_low,ymin,x_hi,ymax);
+    }
     h->SetTitle("");
     h->SetLineWidth(2);
     h->SetLineColor(1);
@@ -476,16 +472,14 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     if(_xtitle == "Rel Activity"){
         ratio->GetXaxis()->SetRangeUser(xmin,xmax);
         pad2->SetLogx();
-        ratio->Draw("same");
-        pad2->Update();
     }   
-    else 
-        ratio->Draw();
+    else{
+        ratio->GetXaxis()->SetRangeUser(x_low,x_hi);
+    }
 
-    cout<<" "<<ratio->GetXaxis()->GetXmin()<<"-"<<ratio->GetXaxis()->GetXmax()<<endl;
-    //cout<<" "<<ratio->GetXaxis()->Maximum()<<"-"<<ratio->GetXaxis()->Minimum()
-    cout << "xxxxxxxxxxxxxxxxxxxx" << endl;
-    cout << ratio->GetSize() << " " << ratio->GetBinLowEdge(1)<<"-"<<ratio->GetBinLowEdge(6)<<" "<<ratio->GetNbinsX() << endl;
+    ratio->Draw("same");
+    pad2->Update();
+ 
     CMS_lumi(pad1, 4, 11);
     c3->Update();
 
