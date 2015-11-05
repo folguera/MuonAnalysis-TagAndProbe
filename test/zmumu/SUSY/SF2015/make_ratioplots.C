@@ -46,7 +46,7 @@ TH1F* DividTGraphs(TGraphAsymmErrors* gr1, TGraphAsymmErrors* gr2){
     //Loop over bins to do ratio
     //
     for (int k = 0; k < 2; ++k){
-        for(int i = 0;  i < nbins+1; ++i){
+        for(int i = 0;  i < nbins; ++i){
             //
             //TGraph
             //
