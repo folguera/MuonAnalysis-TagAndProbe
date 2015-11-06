@@ -1,7 +1,10 @@
 import ROOT as r
 import os
 
+canvas = None
 def save_canvas(_folder, _file, _folder_out):
+    r.gROOT.SetBatch()
+    global canvas
     _fit_folder = _file.replace('.root', '')
 
     if not os.path.exists(_folder_out + _fit_folder):
@@ -26,9 +29,20 @@ def save_canvas(_folder, _file, _folder_out):
                         r.gDirectory.cd(key3.GetName())
                         for key4 in r.gDirectory.GetListOfKeys():
                             c4 = r.gROOT.GetClass(key4.GetClassName())
+                            #print 'The class name is ', c4,
+                            #print 'The name is ', key4.GetName()
                             if key4.GetName() == 'fit_canvas' and str(c4).find('TCanvas') != -1:
                                 canvas  = key4.ReadObj()
+                                #print canvas,type(canvas),canvas.GetClassName()
+                                #print 'The name of the folder out is', _folder_out + '/' + key3.GetName() + '.pdf'
                                 _plot = key3.GetName()
+                                #if _folder_out.find("_vtx_bin") == -1:
+                                    #_plot = _plot[_plot.find('tag_nVertices'):]
+                                    #_plot = _plot[:_plot.find('tag_nVertices') + 19:]
+                                #canvas.SaveAs(_folder_out + '/' + key3.GetName() + '.pdf')
+                                savepath = str((_folder_out + '/' + _plot + '.png'))
+                                canvas.Draw()
+                                canvas.SaveAs(savepath)
                                 canvas.SaveAs(_folder_out + '/' + _plot + '.pdf')
                         r.gDirectory.cd("..")
                 r.gDirectory.cd("..")
@@ -39,9 +53,25 @@ args = sys.argv[1:]
 iteration = '1'
 if len(args) > 0: iteration =  args[0]
 print "The iteration is ", iteration
+<<<<<<< HEAD
 _sample = 'MC25ns2015DNLO'
 if len(args) > 1: _sample =  args[1]
 print "The sample is", _sample 
+=======
+#data_sample = "25ns"
+#data_sample = "50nsC"
+#data_sample = "50nsB"
+#if len(args) > 2: data_sample =  args[2]
+#print "The data sample is ", data_sample
+
+#_sample = '/DATA25ns2015D/'
+_sample = '/MC25ns2015DLO/'
+#_sample = '/MC25ns2015DNLO/'
+
+
+_folder = ''
+_folder = os.getcwd() + '/Efficiency' + iteration + _sample
+>>>>>>> d5fe57ebf96c5c81b2db6bdabd2c557822cd74e9
 
 _folder = os.getcwd() + '/Efficiency' + iteration + '/' + _sample + '/'
 _folder_out = _folder +  'FitPlots/'
