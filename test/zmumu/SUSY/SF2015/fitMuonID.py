@@ -46,7 +46,7 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
     SaveWorkspace = cms.bool(False),
 
     Variables = cms.PSet(
-        weight = cms.vstring("weight","0","10",""),
+        weight = cms.vstring("weight","-100","100",""),
         mass = cms.vstring("Tag-muon Mass", "70", "130", "GeV/c^{2}"),
         pt = cms.vstring("muon p_{T}", "0", "1000", "GeV/c"),
         eta    = cms.vstring("muon #eta", "-2.5", "2.5", ""),
@@ -425,7 +425,7 @@ elif scenario == 'mc_all':
                 Efficiencies = cms.PSet(),
                 )
                 process.TnP_MuonID.WeightVariable = cms.string("weight")
-                process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
+                process.TnP_MuonID.Variables.weight = cms.vstring("weight","-10","10","")
             elif order == 'NLO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
@@ -439,7 +439,7 @@ elif scenario == 'mc_all':
                 Efficiencies = cms.PSet(),
                 )
                 process.TnP_MuonID.WeightVariable = cms.string("weight")
-                process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
+                process.TnP_MuonID.Variables.weight = cms.vstring("weight","-10","10","")
 
 
 #_*_*_*_*_*_*_*_*_*_*_*_*_*_*
