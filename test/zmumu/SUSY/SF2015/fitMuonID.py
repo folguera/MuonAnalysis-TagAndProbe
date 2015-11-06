@@ -429,7 +429,9 @@ elif scenario == 'mc_all':
             elif order == 'NLO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
+                #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
+                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
+
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
