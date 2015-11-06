@@ -37,16 +37,16 @@ TH1F* DividTGraphs(TGraphAsymmErrors* gr1, TGraphAsymmErrors* gr2){
         }
     }
 
+    TH1F *h0 = new TH1F("h0","h0",nbins,xbins);
     TH1F *h1 = new TH1F("h1","h1",nbins,xbins);
-    TH1F *h2 = new TH1F("h2","h2",nbins,xbins);
 
     TGraphAsymmErrors* gr[2] = {gr1, gr2};
-    TH1F* h[2] = {h1, h2};
+    TH1F* h[2] = {h0, h1};
 
     //Loop over bins to do ratio
     //
     for (int k = 0; k < 2; ++k){
-        for(int i = 0;  i < nbins+1; ++i){
+        for(int i = 0;  i < nbins; ++i){
             //
             //TGraph
             //
@@ -69,6 +69,7 @@ TH1F* DividTGraphs(TGraphAsymmErrors* gr1, TGraphAsymmErrors* gr2){
 
     //ratio histogram
     h[0]->Divide(h[1]);
+    delete h[1];
 
     return h[0]; 
 
@@ -111,7 +112,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad1->cd();
     eff1->Draw("AP");
     eff1->SetTitle("");
-    eff1->GetYaxis()->SetTitle("Efficiency9");
+    eff1->GetYaxis()->SetTitle("Efficiency");
     eff1->GetXaxis()->SetRangeUser(x_low, x_hi);
     eff1->GetXaxis()->SetLabelOffset(999);
     eff1->GetXaxis()->SetLabelSize(0);
@@ -125,8 +126,11 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else{_xtitle = "Rel Activity";}
     eff1->GetXaxis()->SetTitle(_xtitle);
     TString _title = eff1->GetXaxis()->GetTitle();
+    if(_xtitle == "Rel Activity"){
+       pad1->SetLogx();
+    }
     eff1->GetXaxis()->SetTitle("");
-    eff1->GetYaxis()->SetRangeUser(0.899, 1.05);
+    eff1->GetYaxis()->SetRangeUser(0.885, 1.05);
     eff1->GetYaxis()->SetTitleSize(27);
     eff1->GetYaxis()->SetTitleFont(63);
     eff1->GetYaxis()->SetLabelFont(43);
@@ -427,37 +431,55 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
 
     c3->cd();
     TPad *pad2 = new TPad("pad2", "pad2", 0, 0., 1, 0.3);
-    if(_xtitle == "Soft Activity"){
-    pad2->SetLogx();
-    }
     pad2->SetTopMargin(0.0); 
     pad2->SetBottomMargin(0.35); 
     pad2->SetGridy(); 
     pad2->Draw();
     pad2->cd();
-    ratio->SetTitle("");
-    ratio->SetLineWidth(2);
-    ratio->SetLineColor(1);
-    ratio->SetMarkerStyle(20);
-    ratio->SetMarkerColor(1);
+    TH1* h;
+    float ymin = 0.950001;
+    float ymax = 1.049999;
+    float xmin = eff1->GetXaxis()->GetXmin();
+    float xmax = eff1->GetXaxis()->GetXmax();
+    if(_xtitle == "Rel Activity"){
+        h = pad2->DrawFrame(xmin,ymin,xmax,ymax);
+    }
+    else{ 
+        h = pad2->DrawFrame(x_low,ymin,x_hi,ymax);
+    }
+    h->SetTitle("");
+    h->SetLineWidth(2);
+    h->SetLineColor(1);
+    h->SetMarkerStyle(20);
+    h->SetMarkerColor(1);
     //ratio->GetYaxis()->SetRangeUser(0.9,1.0999);
-    ratio->GetYaxis()->SetRangeUser(0.95,1.04999);
-    //ratio->GetYaxis()->SetRangeUser(0.98,1.01999);
-    ratio->GetYaxis()->SetTitle("Data/MC");
-    ratio->GetYaxis()->SetNdivisions(505);
-    ratio->GetYaxis()->SetLabelSize(20);
-    ratio->GetYaxis()->SetTitleFont(63);
-    ratio->GetYaxis()->SetTitleOffset(1.5);
-    ratio->GetYaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
-    ratio->GetYaxis()->SetTitleSize(27);
-    ratio->GetXaxis()->SetTitleSize(27);
-    ratio->GetXaxis()->SetLabelSize(20);
-    ratio->GetXaxis()->SetTitle(_title);
-    ratio->GetXaxis()->SetTitleFont(63);
-    ratio->GetXaxis()->SetTitleSize(27);
-    ratio->GetXaxis()->SetTitleOffset(3);
-    ratio->GetXaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
-    ratio->Draw();
+    h->GetYaxis()->SetRangeUser(ymin,ymax);
+    //raftio->GetYaxis()->SetRangeUser(0.98,1.01999);
+    h->GetYaxis()->SetTitle("Data/MC");
+    h->GetYaxis()->SetNdivisions(505);
+    h->GetYaxis()->SetLabelSize(20);
+    h->GetYaxis()->SetTitleFont(63);
+    h->GetYaxis()->SetTitleOffset(1.5);
+    h->GetYaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
+    h->GetYaxis()->SetTitleSize(27);
+    h->GetXaxis()->SetTitleSize(27);
+    h->GetXaxis()->SetLabelSize(20);
+    h->GetXaxis()->SetTitle(_title);
+    h->GetXaxis()->SetTitleFont(63);
+    h->GetXaxis()->SetTitleSize(27);
+    h->GetXaxis()->SetTitleOffset(3);
+    h->GetXaxis()->SetLabelFont(43); // Absolute font size in pixel (precision 3)
+    if(_xtitle == "Rel Activity"){
+        ratio->GetXaxis()->SetRangeUser(xmin,xmax);
+        pad2->SetLogx();
+    }   
+    else{
+        ratio->GetXaxis()->SetRangeUser(x_low,x_hi);
+    }
+
+    ratio->Draw("same");
+    pad2->Update();
+ 
     CMS_lumi(pad1, 4, 11);
     c3->Update();
 
