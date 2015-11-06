@@ -135,7 +135,17 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
             "Exponential::backgroundFail(mass, lf[-0.1,-1,0.1])",
             "efficiency[0.9,0.7,1]",
             "signalFractionInPassing[0.9]"
-        )
+        ),
+        vpvPlusCheb = cms.vstring(
+            "Voigtian::signal1(mass, mean1[90,80,100], width[2.495], sigma1[2,1,3])",
+            "Voigtian::signal2(mass, mean2[90,80,100], width,        sigma2[4,3,10])",
+            "SUM::signal(vFrac[0.8,0.5,1]*signal1, signal2)",
+            "RooChebychev::backgroundPass(mass, {a0[0.5,-1,1], a1[0.5,-1,1],a2[0.5,-1,1]})",
+            "RooChebychev::backgroundFail(mass, {a0[0.5,-1,1], a1[0.5,-1,1],a2[0.5,-1,1]})",
+            "efficiency[0.9,0.7,1]",
+            "signalFractionInPassing[0.9]"
+            )
+
     ),
 
     binnedFit = cms.bool(True),
@@ -561,6 +571,7 @@ for ID, ALLBINS in ID_BINS:
         os.makedirs(_output)
     module = process.TnP_MuonID.clone(OutputFileName = cms.string(_output + "/TnP_MuonID_%s_%s.root" % (ID, X)))
     shape = "vpvPlusExpo"
+    #shape = "vpvPlusCheb"
     DEN = B.clone(); num = ID;
 
     #compute isolation efficiency 
