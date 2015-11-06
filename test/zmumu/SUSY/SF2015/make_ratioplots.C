@@ -37,6 +37,12 @@ TH1F* DividTGraphs(TGraphAsymmErrors* gr1, TGraphAsymmErrors* gr2){
         }
     }
 
+    //hack to move the last data point in the rel activity plots to visible range if we show the plot only up to 10
+    for(int i = 0; i < nbins+1; i++){
+        if(xbins[i] == 9999){xbins[i]=9;}
+        cout << xbins[i] << endl;
+    }
+
     TH1F *h0 = new TH1F("h0","h0",nbins,xbins);
     TH1F *h1 = new TH1F("h1","h1",nbins,xbins);
 
@@ -110,10 +116,19 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad1->SetTopMargin(0.1); 
     pad1->Draw();
     pad1->cd();
-    eff1->Draw("AP");
-    eff1->SetTitle("");
-    eff1->GetYaxis()->SetTitle("Efficiency");
-    eff1->GetXaxis()->SetRangeUser(x_low, x_hi);
+    float eff_min = 0.885;
+    float eff_max = 1.05;
+    TString axistitle =  eff1->GetXaxis()->GetTitle();
+    TH1F* hr;
+    if( axistitle == "pfCombRelActivitydBCorr"){
+        hr = pad1->DrawFrame(0.001,eff_min,10.01,eff_max);
+    }
+    else{
+        hr = pad1->DrawFrame(x_low,eff_min,x_hi,eff_max);
+    }
+    hr->SetTitle("");
+    hr->GetYaxis()->SetTitle("Efficiency");
+    hr->GetXaxis()->SetRangeUser(x_low, x_hi);
     eff1->GetXaxis()->SetLabelOffset(999);
     eff1->GetXaxis()->SetLabelSize(0);
     TString _xtitle = eff1->GetXaxis()->GetTitle();
@@ -124,24 +139,29 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else if (_xtitle.Contains("pfCombAbsActivitydBCorr")){_xtitle = "Abs Activity";}
     else if (_xtitle.Contains("pfCombRelActivitydBCorr")){_xtitle = "Rel Activity";}
     else{_xtitle = "Rel Activity";}
+    hr->GetXaxis()->SetTitle(_xtitle);
     eff1->GetXaxis()->SetTitle(_xtitle);
+    
     TString _title = eff1->GetXaxis()->GetTitle();
     if(_xtitle == "Rel Activity"){
-       pad1->SetLogx();
+        pad1->SetLogx();
+        eff1->GetXaxis()->SetRangeUser(x_low, 10.01);
     }
-    eff1->GetXaxis()->SetTitle("");
-    eff1->GetYaxis()->SetRangeUser(0.885, 1.05);
-    eff1->GetYaxis()->SetTitleSize(27);
-    eff1->GetYaxis()->SetTitleFont(63);
-    eff1->GetYaxis()->SetLabelFont(43);
-    eff1->SetMarkerStyle(20);
-    eff1->GetYaxis()->SetLabelSize(20);
-    eff1->GetYaxis()->SetTitleOffset(1.5);
+    hr->GetXaxis()->SetTitle("");
+    hr->GetYaxis()->SetRangeUser(eff_min, eff_max);
+    hr->GetYaxis()->SetTitleSize(27);
+    hr->GetYaxis()->SetTitleFont(63);
+    hr->GetYaxis()->SetLabelFont(43);
+    hr->SetMarkerStyle(20);
+    hr->GetYaxis()->SetLabelSize(20);
+    hr->GetYaxis()->SetTitleOffset(1.5);
+    eff1->Draw("P");
     eff2->Draw("P");
     eff2->SetLineColor(4);
     eff2->SetMarkerStyle(21);
     eff2->SetMarkerColor(4);
     TString _legtext = "";
+    
 
     if(_canvas.Contains("/Loose_noIP_eta")){
         _legtext = "Loose Id, p_{T} #geq 20 GeV";
@@ -440,7 +460,10 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     float ymin = 0.950001;
     float ymax = 1.049999;
     float xmin = eff1->GetXaxis()->GetXmin();
-    float xmax = eff1->GetXaxis()->GetXmax();
+    
+    //float xmax = eff1->GetXaxis()->GetXmax();
+    float xmax = 10.01;
+    
     if(_xtitle == "Rel Activity"){
         h = pad2->DrawFrame(xmin,ymin,xmax,ymax);
     }
