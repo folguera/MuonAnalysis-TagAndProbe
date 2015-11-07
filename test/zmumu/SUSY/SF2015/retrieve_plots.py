@@ -25,7 +25,6 @@ def save_canvas(_folder, _file, _folder_out):
                 r.gDirectory.cd(key2.GetName())
                 for key3 in r.gDirectory.GetListOfKeys():
                     c3 = r.gROOT.GetClass(key3.GetClassName())
-                    #print 'The name is ', key3.GetName()
                     if str(c3).find('TDirectoryFile') != -1 and key3.GetName().find('_eff') == -1:
                         r.gDirectory.cd(key3.GetName())
                         for key4 in r.gDirectory.GetListOfKeys():
@@ -33,7 +32,6 @@ def save_canvas(_folder, _file, _folder_out):
                             #print 'The class name is ', c4,
                             #print 'The name is ', key4.GetName()
                             if key4.GetName() == 'fit_canvas' and str(c4).find('TCanvas') != -1:
-                                #print 'gonna save the canvas'
                                 canvas  = key4.ReadObj()
                                 #print canvas,type(canvas),canvas.GetClassName()
                                 #print 'The name of the folder out is', _folder_out + '/' + key3.GetName() + '.pdf'
@@ -52,13 +50,14 @@ def save_canvas(_folder, _file, _folder_out):
 
 import sys, os
 args = sys.argv[1:]
-#scenario = "data_all"
-#scenario = "mc_all"
-#if len(args) > 0: scenario = args[0]
-#print "The scenario is ", scenario 
-iteration = '6'
+iteration = '1'
 if len(args) > 0: iteration =  args[0]
 print "The iteration is ", iteration
+<<<<<<< HEAD
+_sample = 'MC25ns2015DNLO'
+if len(args) > 1: _sample =  args[1]
+print "The sample is", _sample 
+=======
 #data_sample = "25ns"
 #data_sample = "50nsC"
 #data_sample = "50nsB"
@@ -72,17 +71,18 @@ _sample = '/MC25ns2015DLO/'
 
 _folder = ''
 _folder = os.getcwd() + '/Efficiency' + iteration + _sample
+>>>>>>> d5fe57ebf96c5c81b2db6bdabd2c557822cd74e9
 
+_folder = os.getcwd() + '/Efficiency' + iteration + '/' + _sample + '/'
 _folder_out = _folder +  'FitPlots/'
 if not os.path.exists(_folder + '/FitPlots'):
     os.makedirs(_folder + '/FitPlots')
-print 'folder is', _folder
-print '_folder_out is', _folder_out
 
 dir = os.listdir(_folder)
 for file in dir:
-    if file.find('TnP_MuonID') != -1:
-            save_canvas(_folder, file, _folder_out) 
+    if file.find('TnP_') != -1:
+        print 'hello'
+        save_canvas(_folder, file, _folder_out) 
 
 
 
