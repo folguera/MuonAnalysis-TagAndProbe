@@ -140,8 +140,8 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
             "Voigtian::signal1(mass, mean1[90,80,100], width[2.495], sigma1[2,1,3])",
             "Voigtian::signal2(mass, mean2[90,80,100], width,        sigma2[4,3,10])",
             "SUM::signal(vFrac[0.8,0.5,1]*signal1, signal2)",
-            "RooChebychev::backgroundPass(mass, {a0[0.5,-1,1], a1[0.5,-1,1],a2[0.5,-1,1]})",
-            "RooChebychev::backgroundFail(mass, {a0[0.5,-1,1], a1[0.5,-1,1],a2[0.5,-1,1]})",
+            "RooChebychev::backgroundPass(mass, {a0[0.25,0,0.5], a1[-0.25,-1,0.1],a2[0.,-0.25,0.25]})",
+            "RooChebychev::backgroundFail(mass, {a0[0.25,0,0.5], a1[-0.25,-1,0.1],a2[0.,-0.25,0.25]})",
             "efficiency[0.9,0.7,1]",
             "signalFractionInPassing[0.9]"
             )
@@ -572,8 +572,11 @@ for ID, ALLBINS in ID_BINS:
     if not os.path.exists(_output):
         os.makedirs(_output)
     module = process.TnP_MuonID.clone(OutputFileName = cms.string(_output + "/TnP_MuonID_%s_%s.root" % (ID, X)))
-    shape = "vpvPlusExpo"
-    #shape = "vpvPlusCheb"
+    shape = cms.vstring("vpvPlusExpo")
+    #shape = cms.vstring("vpvPlusCheb")
+        if not "Iso" in ID:  #customize only for ID
+            if (len(B.pt)==10):  #customize only when the pT have the high pt bins
+                shape = cms.vstring("vpvPlusExpo","*pt_bin4*","vpvPlusCheb","*pt_bin5*","vpvPlusCheb","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
     DEN = B.clone(); num = ID;
 
     #compute isolation efficiency 
@@ -582,7 +585,7 @@ for ID, ALLBINS in ID_BINS:
         EfficiencyCategoryAndState = cms.vstring(num,"above"),
         UnbinnedVariables = cms.vstring("mass"),
         BinnedVariables = DEN,
-        BinToPDFmap = cms.vstring(shape)
+        BinToPDFmap = shape
         ))
         setattr(process, "TnP_MuonID_"+ID+"_"+X, module)        
         setattr(process, "run_"+ID+"_"+X, cms.Path(module))
@@ -591,7 +594,7 @@ for ID, ALLBINS in ID_BINS:
         EfficiencyCategoryAndState = cms.vstring(num,"above"),
         UnbinnedVariables = cms.vstring("mass","weight"),
         BinnedVariables = DEN,
-        BinToPDFmap = cms.vstring(shape)
+        BinToPDFmap = shape
         ))
         setattr(process, "TnP_MuonID_"+ID+"_"+X, module)        
         setattr(process, "run_"+ID+"_"+X, cms.Path(module))
