@@ -402,7 +402,6 @@ MEDIUM_PT_ACTIVITY_PTHIGH= cms.PSet(
 if scenario == 'data_all':
     if bs == '25ns':
         if run == '2015D':
-            print 'yeah baby'
             process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                     'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root'
@@ -428,6 +427,7 @@ elif scenario == 'mc_all':
                 process.TnP_MuonID.WeightVariable = cms.string("weight")
                 process.TnP_MuonID.Variables.weight = cms.vstring("weight","-10","10","")
             elif order == 'NLO':
+                print 'yes baby !'
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                 #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
@@ -577,6 +577,9 @@ for ID, ALLBINS in ID_BINS:
     #shape = cms.vstring("vpvPlusCheb")
     if not "Iso" in ID:  #customize only for ID
         if (len(B.pt)==10):  #customize only when the pT have the high pt bins
+            if "Loose_noIP" in ID:
+            shape = cms.vstring("vpvPlusExpo","*pt_bin5*","vpvPlusCheb","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
+            else:
             shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
     DEN = B.clone(); num = ID;
 
