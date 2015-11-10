@@ -181,7 +181,7 @@ VTX_BINS_ETA24  = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 PT_ALLETA_BINS1 = cms.PSet(
-    pt     = cms.vdouble(5, 10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble(  0.0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
@@ -190,7 +190,7 @@ PT_ALLETA_BINS1 = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 PT_ETA_BINS1 = cms.PSet(
-    pt     = cms.vdouble(5, 10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble( 0.0, 1.2, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
