@@ -40,7 +40,6 @@ TH1F* DividTGraphs(TGraphAsymmErrors* gr1, TGraphAsymmErrors* gr2){
     //hack to move the last data point in the rel activity plots to visible range if we show the plot only up to 10
     for(int i = 0; i < nbins+1; i++){
         if(xbins[i] == 9999){xbins[i]=9;}
-        cout << xbins[i] << endl;
     }
 
     TH1F *h0 = new TH1F("h0","h0",nbins,xbins);
@@ -75,7 +74,12 @@ TH1F* DividTGraphs(TGraphAsymmErrors* gr1, TGraphAsymmErrors* gr2){
 
     //ratio histogram
     h[0]->Divide(h[1]);
+    //for (int k = 0; k < nbins+1; ++k){
+    //    cout << "        " << h[0]->GetBinContent(k) << endl;
+    //}
+    
     delete h[1];
+
 
     return h[0]; 
 
@@ -101,6 +105,8 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     TGraphAsymmErrors* eff2 = (TGraphAsymmErrors*)c2->GetPrimitive("hxy_fit_eff");
 
     TH1F* ratio = DividTGraphs(eff1, eff2);
+
+    ratio->SetDirectory(0);
     ratio->SetStats(0);
 
     int nbins = eff1->GetN();
@@ -456,7 +462,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad2->SetGridy(); 
     pad2->Draw();
     pad2->cd();
-    TH1* h;
+    TH1F* h;
     float ymin = 0.950001;
     float ymax = 1.049999;
     float xmin = eff1->GetXaxis()->GetXmin();
@@ -502,25 +508,39 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
 
     ratio->Draw("same");
     pad2->Update();
+
+    //cout << "--------------" << endl;
+    //for (int k = 0; k < ratio->GetSize(); ++k){
+    //    cout << "        " << ratio->GetBinContent(k) << endl;
+    //}
  
+    float ratio_min = ratio->GetMinimum(0);
+    float ratio_max = ratio->GetMaximum();
+
+    TString leg_ratio_text = Form("min: %.3f, max: %.3f",ratio_min, ratio_max);
+    TLegend* leg_ratio = new TLegend(0.20, 0.86, 0.40 , 0.87);
+    leg_ratio->SetHeader(leg_ratio_text);
+    TLegendEntry *header_ratio = (TLegendEntry*)leg_ratio->GetListOfPrimitives()->First();
+    //header_ratio->SetTextAlign(22);
+    header_ratio->SetTextColor(1);
+    header_ratio->SetTextFont(43);
+    header_ratio->SetTextSize(16);
+    leg_ratio->Draw("same");
+
     CMS_lumi(pad1, 4, 11);
     c3->Update();
 
     c3->SaveAs(_output + _par + "_" + _file);
     _file.ReplaceAll("pdf","png");
     c3->SaveAs(_output + _par + "_" + _file);
-
-    //TFile *f_out = TFile::Open("TEST.root","recreate");
-    //f_out->cd();
-    //c3->Write();
+    _file.ReplaceAll("png","root");
 
     //_*_*_*_*_*_*_*_*_*
     //Write SF into file
     //_*_*_*_*_*_*_*_*_*
-
-    //ofstream myfile;
-    //myfile.open(_output + 
-
+    //TFile *fout = new TFile(_output + _par + "_" + _file, "NEW");
+    //ratio->Write();
+    //fout->Close();
 
     return 0;
 
