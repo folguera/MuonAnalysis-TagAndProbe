@@ -640,7 +640,7 @@ for ID, ALLBINS in ID_BINS:
         _output += '/MC' + bs + run + order
     if not os.path.exists(_output):
         os.makedirs(_output)
-    module = process.TnP_MuonID.clone(OutputFileName = cms.string(_output + "/TnP_MuonID_%s_%s.root" % (ID, X)))
+    module = process.TnP_MuonID.clone(OutputFileName = cms.string(_output + "/TnP_MuonID_%s.root" % (X)))
     shape = cms.vstring("vpvPlusExpo")
     #shape = cms.vstring("vpvPlusCheb")
     if not "Iso" in ID:  #customize only for ID
