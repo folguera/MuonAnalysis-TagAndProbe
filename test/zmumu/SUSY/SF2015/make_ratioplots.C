@@ -168,7 +168,10 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     eff2->SetMarkerColor(4);
     TString _legtext = "";
     
+    if(_canvas.Contains("LooseID")){    _legtext = "Loose Id "    }
+    else if(_canvas.Contains("MediumID")){    _legtext = "Medium Id "    }
 
+    /*
     if(_canvas.Contains("/Loose_noIP_eta")){
         _legtext = "Loose Id, p_{T} #geq 20 GeV";
     }else if(_canvas.Contains("/Loose_noIP_vtx_bin")){
@@ -410,6 +413,8 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
 	std::cout<<"canvas is"<<_canvas<<endl;
         //return 1;
     }
+    */
+
     TLegend* leg = new TLegend(0.40, 0.65, 0.70 , 0.85);
     leg->SetHeader(_legtext);
     TLegendEntry *header = (TLegendEntry*)leg->GetListOfPrimitives()->First();

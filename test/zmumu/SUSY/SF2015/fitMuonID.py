@@ -453,7 +453,7 @@ if id_bins == '1':
     (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_eta",            ETA_BINS_INCLUSIVE_PT           )),
     (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_vtx",            VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_pt",             PT_BINS_INCLUSIVE_ETA           )),
-    (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_pt_eta",         PT_ETA_MAP                      )),
+    (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_map_pt_eta",         PT_ETA_MAP                      )),
     ]
 #Medium ID
 if id_bins == '2':
@@ -461,7 +461,7 @@ if id_bins == '2':
     (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_eta",          ETA_BINS_INCLUSIVE_PT           )),
     (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_vtx",          VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_pt",           PT_BINS_INCLUSIVE_ETA           )),
-    (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_pt_eta",       PT_ETA_MAP                      )),
+    (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_map_pt_eta",       PT_ETA_MAP                      )),
     ]
 #_*_
 #IPs
@@ -471,28 +471,28 @@ if id_bins == '3':
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_pt_eta",              LOOSE_PT_ETA_MAP                      )),
+    (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_map_pt_eta",              LOOSE_PT_ETA_MAP                      )),
     ]                                                                                                                
 if id_bins == '4':                                                                                                   
     ID_BINS = [                                                                                                      
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_eta",                MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_vtx",                MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_pt",                 MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_pt_eta",             MEDIUM_PT_ETA_MAP                      )),
+    (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_map_pt_eta",             MEDIUM_PT_ETA_MAP                      )),
     ]
 if id_bins == '5':
     ID_BINS = [
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_pt_eta",              LOOSE_PT_ETA_MAP                      )),
+    (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_map_pt_eta",              LOOSE_PT_ETA_MAP                      )),
     ]
 if id_bins == '6':
     ID_BINS = [
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_eta",                MEDIUM_ETA_BINS_INCLUSIVE_PT           )),
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_vtx",                MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_pt",                 MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_pt_eta",             MEDIUM_PT_ETA_MAP                      )),
+    (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_map_pt_eta",             MEDIUM_PT_ETA_MAP                      )),
     ]
 #_*_*
 #ISOs
@@ -503,9 +503,9 @@ if id_bins == '7':
     (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_eta",                   LOOSE_ETA_BINS_INCLUSIVE_PT           )),
     (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_vtx",                   LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_pt",                    LOOSE_PT_BINS_INCLUSIVE_ETA           )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_pt_eta",                LOOSE_PT_ETA_MAP                      )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_pt_eta",                LOOSE_PT_ETA_MAP                      )),
+    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Tight MiniIso
 if id_bins == '8':
@@ -513,18 +513,18 @@ if id_bins == '8':
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_eta",                  MEDIUM_ETA_BINS_INCLUSIVE_PT           )),
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_vtx",                  MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_pt",                   MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_pt_eta",               MEDIUM_PT_ETA_MAP                      )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_activity_eta",         MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_activity_pt",          MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_pt_eta",               MEDIUM_PT_ETA_MAP                      )),
+    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_activity_eta",         MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_activity_pt",          MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 if id_bins == '9':
     ID_BINS = [
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_eta",                   LOOSE_ETA_BINS_INCLUSIVE_PT           )), 
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_vtx",                   LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_pt",                    LOOSE_PT_BINS_INCLUSIVE_ETA           )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_pt_eta",                LOOSE_PT_ETA_MAP                      )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_pt_eta",                LOOSE_PT_ETA_MAP                      )),
+    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #MultiIso
 if id_bins == '10':
@@ -532,9 +532,9 @@ if id_bins == '10':
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_eta",              MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_vtx",              MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_pt",               MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_pt_eta",           MEDIUM_PT_ETA_MAP                      )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_activity_eta",     MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_activity_pt",      MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_pt_eta",           MEDIUM_PT_ETA_MAP                      )),
+    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_eta",     MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_pt",      MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Loose+MiniIso02
 if id_bins == '11':
@@ -542,9 +542,9 @@ if id_bins == '11':
     (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_eta",                                           ETA_BINS_INCLUSIVE_PT           )),
     (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_vtx",                                           VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_pt",                                            PT_BINS_INCLUSIVE_ETA           )),
-    (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_pt_eta",                                        PT_ETA_MAP                      )),
-    (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_activity_eta",                                  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_activity_pt",                                   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_map_pt_eta",                                        PT_ETA_MAP                      )),
+    (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_map_activity_eta",                                  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Loose_plus_MiniIso02"), ("NUM_LooseID_plus_MiniIso02_DENOM_generalTracks_VAR_map_activity_pt",                                   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Loose+MiniIso02+TightIP2D
 if id_bins == '12':
@@ -552,9 +552,9 @@ if id_bins == '12':
     (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_eta",             ETA_BINS_INCLUSIVE_PT           )),
     (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_vtx",             VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_pt",              PT_BINS_INCLUSIVE_ETA           )),
-    (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_pt_eta",          PT_ETA_MAP                      )),
-    (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_activity_eta",    ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_activity_pt",     ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_map_pt_eta",          PT_ETA_MAP                      )),
+    (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_map_activity_eta",    ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Loose_plus_MiniIso02_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_map_activity_pt",     ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Medium+MiniIso02
 if id_bins == '13':
@@ -562,9 +562,9 @@ if id_bins == '13':
     (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_eta",                                         ETA_BINS_INCLUSIVE_PT           )),
     (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_vtx",                                         VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_pt",                                          PT_BINS_INCLUSIVE_ETA           )),
-    (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_pt_eta",                                      PT_ETA_MAP                      )),
-    (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_activity_eta",                                ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_activity_pt",                                 ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_map_pt_eta",                                      PT_ETA_MAP                      )),
+    (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_map_activity_eta",                                ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Medium_plus_MiniIso02"), ("NUM_MediumID_plus_MiniIso02_DENOM_generalTracks_VAR_map_activity_pt",                                 ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Loose+MiniIso02+TightIP3D
 if id_bins == '14':
@@ -572,9 +572,9 @@ if id_bins == '14':
     (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_eta",             ETA_BINS_INCLUSIVE_PT           )),
     (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_vtx",             VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_pt",              PT_BINS_INCLUSIVE_ETA           )),
-    (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_pt_eta",          PT_ETA_MAP                      )),
-    (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_activity_eta",    ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_activity_pt",     ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_map_pt_eta",          PT_ETA_MAP                      )),
+    (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_map_activity_eta",    ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Loose_plus_MiniIso02_puls_TightIP3D"), ("NUM_LooseID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_map_activity_pt",     ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Medium+MiniIso02+TightIP3D
 if id_bins == '15':
@@ -582,9 +582,9 @@ if id_bins == '15':
     (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_eta",           ETA_BINS_INCLUSIVE_PT           )),
     (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_vtx",           VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_pt",            PT_BINS_INCLUSIVE_ETA           )),
-    (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_pt_eta",        PT_ETA_MAP                      )),
-    (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_activity_eta",  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_activity_pt",   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_map_pt_eta",        PT_ETA_MAP                      )),
+    (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_map_activity_eta",  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Medium_plus_MiniIso02_puls_TightIP3D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP3D_DENOM_generalTracks_VAR_map_activity_pt",   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Medium+MiniIso02+TightIP2D
 if id_bins == '16':
@@ -592,9 +592,9 @@ if id_bins == '16':
     (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_eta",           ETA_BINS_INCLUSIVE_PT           )),
     (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_vtx",           VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_pt",            PT_BINS_INCLUSIVE_ETA           )),
-    (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_pt_eta",        PT_ETA_MAP                      )),
-    (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_activity_eta",  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_activity_pt",   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_map_pt_eta",        PT_ETA_MAP                      )),
+    (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_map_activity_eta",  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Medium_plus_MiniIso02_puls_TightIP2D"), ("NUM_MediumID_plus_MiniIso02_puls_TightIP2D_DENOM_generalTracks_VAR_map_activity_pt",   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Medium+MultiIsoMedium+TightIP2D+TightIP3D
 if id_bins == '17':
@@ -602,9 +602,9 @@ if id_bins == '17':
     (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_eta",           ETA_BINS_INCLUSIVE_PT           )),
     (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_vtx",           VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_pt",            PT_BINS_INCLUSIVE_ETA           )),
-    (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_pt_eta",        PT_ETA_MAP                      )),
-    (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_activity_eta",  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_activity_pt",   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_map_pt_eta",        PT_ETA_MAP                      )),
+    (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_map_activity_eta",  ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D"), ("NUM_MediumID_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3D_DENOM_generalTracks_VAR_map_activity_pt",   ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 
 #Loose+MiniIso04+TightIP2D
@@ -613,9 +613,9 @@ if id_bins == '18':
     (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_eta",             ETA_BINS_INCLUSIVE_PT           )),
     (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_vtx",             VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_pt",              PT_BINS_INCLUSIVE_ETA           )),
-    (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_pt_eta",          PT_ETA_MAP                      )),
-    (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_activity_eta",    ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_activity_pt",     ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_map_pt_eta",          PT_ETA_MAP                      )),
+    (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_map_activity_eta",    ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    (("Loose_plus_MiniIso04_puls_TightIP2D"), ("NUM_LooseID_plus_MiniIso04_puls_TightIP2D_DENOM_generalTracks_VAR_map_activity_pt",     ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 
 
