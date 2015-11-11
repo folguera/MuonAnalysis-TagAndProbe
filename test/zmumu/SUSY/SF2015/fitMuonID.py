@@ -102,7 +102,7 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         #Medium + Miniso02 + TightIP2D
         Medium_plus_MiniIso02_puls_TightIP2DVar= cms.vstring("Medium_plus_MiniIso02_puls_TightIP2DVar" ,"Medium==1 && pfCombRelMiniIsoEACorr < 0.2 && abs(dxyBS) < 0.02 && abs(dzPV) < 0.1", "Medium", "pfCombRelMiniIsoEACorr", "dxyBS", "dzPV"),
         #Medium + MultiIsoMedium + TightIP2D + TightIP3D
-        Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3DVar= cms.vstring("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3DVar" ,"Medium==1 && pfCombRelMiniIsoEACorr < 0.16 && ( PtRel > 7.2 || PtRatio > 0.76 ) && abs(dxyBS) < 0.02 && abs(dzPV) < 0.1 && abs(SIP) < 4", "Medium", "pfCombRelMiniIsoEACorr", "PtRel", "PtRatio", "dxyBS", "dzPV", "abs(SIP)"),
+        Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3DVar= cms.vstring("Medium_plus_MediumMultiIso_plus_TightIP2D_plus_TightIP3DVar" ,"Medium==1 && pfCombRelMiniIsoEACorr < 0.16 && ( PtRel > 7.2 || PtRatio > 0.76 ) && abs(dxyBS) < 0.02 && abs(dzPV) < 0.1 && abs(SIP) < 4", "Medium", "pfCombRelMiniIsoEACorr", "PtRel", "PtRatio", "dxyBS", "dzPV", "SIP"),
         #Loose + MiniIso04 + TightIP2D
         Loose_plus_MiniIso04_puls_TightIP2DVar= cms.vstring("Loose_plus_MiniIso04_puls_TightIP2DVar" ,"PF==1 && pfCombRelMiniIsoEACorr < 0.4 && abs(dxyBS) < 0.02 && abs(dzPV) < 0.1", "PF", "pfCombRelMiniIsoEACorr", "dxyBS", "dzPV"),
     ),
@@ -380,7 +380,6 @@ MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT = cms.PSet(
 #
 MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA= cms.PSet(
     pfCombRelActivitydBCorr = cms.vdouble(0, 0.02, 0.05, 0.15, 1, 9999),
-    pt     = cms.vdouble(10, 40),
     pt     = cms.vdouble(10, 40, 80, 200),
     abseta = cms.vdouble( 0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),

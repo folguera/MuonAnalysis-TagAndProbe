@@ -6,3 +6,4 @@ __init__.py
 *~
 *.sh
 *.root
+submit.sh
