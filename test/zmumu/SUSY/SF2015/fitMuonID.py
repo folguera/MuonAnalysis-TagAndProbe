@@ -401,6 +401,7 @@ if scenario == 'data_all':
             process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                     'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root'
+                    #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2SmallTree.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
