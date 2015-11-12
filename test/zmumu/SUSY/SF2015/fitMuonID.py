@@ -225,8 +225,8 @@ PT_BINS_INCLUSIVE_ETA = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 PT_ETA_MAP = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
-    abseta = cms.vdouble( 0.0, 1.2, 2.4),
+    pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 120),
+    abseta = cms.vdouble( 0.0, 0.9, 2.1, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
     tag_pt = cms.vdouble(21, 500),
@@ -289,8 +289,8 @@ LOOSE_PT_BINS_INCLUSIVE_ETA = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 LOOSE_PT_ETA_MAP = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
-    abseta = cms.vdouble(  0.0, 1.2, 2.4),
+    pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 120),
+    abseta = cms.vdouble( 0.0, 0.9, 2.1, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     PF = cms.vstring("pass"), 
     #tag selections
@@ -356,8 +356,8 @@ MEDIUM_PT_BINS_INCLUSIVE_ETA = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 MEDIUM_PT_ETA_MAP = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
-    abseta = cms.vdouble(  0.0, 1.2, 2.4),
+    pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 120),
+    abseta = cms.vdouble( 0.0, 0.9, 2.1, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     Medium = cms.vstring("pass"), 
     #tag selections
@@ -427,7 +427,8 @@ elif scenario == 'mc_all':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                 #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
-                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
+                #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
+                'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
 
                     ),
                 InputTreeName = cms.string("fitter_tree"),
