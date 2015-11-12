@@ -184,8 +184,9 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else if(_canvas.Contains("VAR_eta")){    _legtext += ", p_{T} #geq 10 GeV"   ; }
     else if(_canvas.Contains("VAR_vtx")){    _legtext += ", p_{T} #geq 10 GeV, #||{#eta} #geq 2.4"   ; }
     
-    else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin0")){  _legtext += ", 0 < #||{#eta} #leq 1.2"   ; }   
-    else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin1")){  _legtext += ", 1.2 < #||{#eta} #leq 2.4"   ; }   
+    else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin0")){  _legtext += ", 0 < #||{#eta} #leq 0.9"   ; }   
+    else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin1")){  _legtext += ", 0.9 < #||{#eta} #leq 2.1"   ; }   
+    else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin2")){  _legtext += ", 2.1 < #||{#eta} #leq 2.4"   ; }   
     
     else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_eta_bin0")){  _legtext += ", 0 < #||{#eta} #leq 1.2, p_{T} #geq 10 GeV"   ; }   
     else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_eta_bin1")){  _legtext += ", 1.2 < #||{#eta} #leq 2.4, p_{T} #geq 10 GeV"   ; }   
@@ -194,12 +195,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else if(_canvas.Contains("VAR_map_activity_eta") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin1")){  _legtext += ", 40 GeV < p_{T} #geq 80 GeV, #||{#eta} #geq 2.4"   ; }   
     else if(_canvas.Contains("VAR_map_activity_eta") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin2")){  _legtext += ", 80 GeV < p_{T} #geq 200 GeV, #||{#eta} #geq 2.4"   ; }   
 
-
- 
-    cout << "xxxxxxxxxxxxxxxxxxxxxxxx" << endl;
-    cout << _canvas << endl;
-
- 
+/*
     if(_canvas.Contains("/Loose_noIP_eta")){
         _legtext = "Loose Id, p_{T} #geq 20 GeV";
     }else if(_canvas.Contains("/Loose_noIP_vtx_bin")){
@@ -441,7 +437,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
 	std::cout<<"canvas is"<<_canvas<<endl;
         //return 1;
     }
-    
+*/    
 
     TLegend* leg = new TLegend(0.40, 0.65, 0.70 , 0.85);
     leg->SetHeader(_legtext);
