@@ -7,7 +7,7 @@ import numpy as np
 import string
 
 debug = True
-nEtaBins = 2
+nEtaBins = 3
 
 r.gROOT.SetBatch()
 args = sys.argv[1:]
@@ -68,6 +68,15 @@ for file in glob.glob("*map_pt_eta*.root"):
                             if hist.GetName().startswith("hxy_fit_eff"):
                                 print "found etabin1"
                                 etabin1_data = hist
+                    if plot.GetName().startswith("pt_PLOT_abseta_bin2"):
+                        canvas = plot.ReadObj()
+                        HISTS = canvas.GetListOfPrimitives()
+                        for hist in HISTS:
+                            print hist
+                            if hist.GetName().startswith("hxy_fit_eff"):
+                                print "found etabin2"
+                                etabin2_data = hist
+
 
     if debug: print 'the file is ', file
     if file.find('TnP_MuonID') != -1: 
@@ -100,6 +109,14 @@ for file in glob.glob("*map_pt_eta*.root"):
                             if hist.GetName().startswith("hxy_fit_eff"):
                                 print "found etabin1"
                                 etabin1_mc = hist
+                    if plot.GetName().startswith("pt_PLOT_abseta_bin2"):
+                        canvas = plot.ReadObj()
+                        HISTS = canvas.GetListOfPrimitives()
+                        for hist in HISTS:
+                            print hist
+                            if hist.GetName().startswith("hxy_fit_eff"):
+                                print "found etabin2"
+                                etabin2_mc = hist
  
     
     pt_data = 0
@@ -138,6 +155,19 @@ for file in glob.glob("*map_pt_eta*.root"):
                 err = max(a,b)
                 SFmap.SetBinContent(i+1, eta+1, eff_data/eff_mc)
                 SFmap.SetBinError(i+1, eta+1, err)
+            if eta==2:
+                etabin1_data.GetPoint(i, pt_data, eff_data)
+                errh_data = etabin2_data.GetErrorYhigh(i)
+                errl_data = etabin2_data.GetErrorYlow(i)
+                etabin2_mc.GetPoint(i, pt_mc, eff_mc)
+                errh_mc = etabin2_mc.GetErrorYhigh(i)
+                errl_mc = etabin2_mc.GetErrorYlow(i)
+                a = eff_data/eff_mc * ((errh_data/eff_data)**2 + (errh_mc/eff_mc)**2)**.5 
+                b = eff_data/eff_mc * ((errl_data/eff_data)**2 + (errl_mc/eff_mc)**2)**.5 
+                err = max(a,b)
+                SFmap.SetBinContent(i+1, eta+1, eff_data/eff_mc)
+                SFmap.SetBinError(i+1, eta+1, err)
+
 
     ncontours = 999 
     MyPalette = []
