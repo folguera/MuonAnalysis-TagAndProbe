@@ -85,7 +85,7 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         LooseMiniIsoVar = cms.vstring("LooseMiniIsoVar" ,"pfCombRelMiniIsoEACorr < 0.4", "pfCombRelMiniIsoEACorr"),
         TightMiniIsoVar = cms.vstring("TightMiniIsoVar" ,"pfCombRelMiniIsoEACorr < 0.2", "pfCombRelMiniIsoEACorr"),
         #Multi Iso
-        MediumMultiIsoVar= cms.vstring("MediumMultIsoVar" ,"pfCombRelMiniIsoEACorr < 0.16 && ( PtRel > 7.2 || PtRatio > 0.76 )", "pfCombRelMiniIsoEACorr", "PtRel", "PtRatio"),
+        MediumMultiIsoVar= cms.vstring("MediumMultiIsoVar" ,"pfCombRelMiniIsoEACorr < 0.16 && ( PtRel > 7.2 || PtRatio > 0.76 )", "pfCombRelMiniIsoEACorr", "PtRel", "PtRatio"),
 
         #Stacked requirements
 
@@ -226,7 +226,7 @@ PT_BINS_INCLUSIVE_ETA = cms.PSet(
 )
 PT_ETA_MAP = cms.PSet(
     pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 120),
-    abseta = cms.vdouble( 0.0, 0.9, 2.1, 2.4),
+    abseta = cms.vdouble( 0.0, 0.9, 1.2, 2.1, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
     tag_pt = cms.vdouble(21, 500),
@@ -290,7 +290,7 @@ LOOSE_PT_BINS_INCLUSIVE_ETA = cms.PSet(
 )
 LOOSE_PT_ETA_MAP = cms.PSet(
     pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 120),
-    abseta = cms.vdouble( 0.0, 0.9, 2.1, 2.4),
+    abseta = cms.vdouble( 0.0, 0.9, 1.2, 2.1, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     PF = cms.vstring("pass"), 
     #tag selections
@@ -357,7 +357,7 @@ MEDIUM_PT_BINS_INCLUSIVE_ETA = cms.PSet(
 )
 MEDIUM_PT_ETA_MAP = cms.PSet(
     pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 120),
-    abseta = cms.vdouble( 0.0, 0.9, 2.1, 2.4),
+    abseta = cms.vdouble( 0.0, 0.9, 1.2, 2.1, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     Medium = cms.vstring("pass"), 
     #tag selections
@@ -427,8 +427,10 @@ elif scenario == 'mc_all':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                 #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
-                #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
-                'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
+                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
+                #'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'    # local NLO sample full size 12e6 events
+                #'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeightsSmallTree.root'    #local NLO sample with 3e6 events
+                #'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeightsSmallTree_v2.root'    #local NLO sample with 9e6 events
 
                     ),
                 InputTreeName = cms.string("fitter_tree"),

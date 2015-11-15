@@ -65,7 +65,7 @@ if not os.path.exists(_folder + '/FitPlots'):
 
 dir = os.listdir(_folder)
 for file in dir:
-    if file.find('TnP_') != -1:
+    if(file.find('TnP_') != -1 and os.stat(_folder + file).st_size > 9999):
         print 'hello'
         save_canvas(_folder, file, _folder_out) 
 

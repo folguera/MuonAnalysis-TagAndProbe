@@ -169,6 +169,8 @@ for file in glob.glob("*map_pt_eta*.root"):
                 SFmap.SetBinError(i+1, eta+1, err)
 
 
+
+
     ncontours = 999 
     MyPalette = []
     stops = [0.00, 0.50, 1.00]
@@ -195,18 +197,19 @@ for file in glob.glob("*map_pt_eta*.root"):
  
     SFmap.SetContour(nLevels)
 
+    filename = string.replace(file, '.root', '')
     c1=r.TCanvas("c1","c1",1200,800) 
+    SFmap.SetTitle(file)
     SFmap.SetMarkerSize(1.0)
     SFmap.Draw("COLZ")
     r.gStyle.SetPaintTextFormat("4.3f")
     SFmap.GetZaxis().SetRangeUser(zmin,zmax)
-    
+   
     SFmap.Draw("TEXT E same")
     c1.Update()
 
     fout = r.TFile(_folder_out + file, "RECREATE");
     SFmap.Write();
-    filename = string.replace(file, '.root', '')
     c1.SaveAs(_folder_out + filename + '.png')
     c1.SaveAs(_folder_out + filename + '.pdf')
     
