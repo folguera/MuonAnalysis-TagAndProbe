@@ -41,13 +41,19 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1) )
 #Preparing the variables
 #_*_*_*_*_*_*_*_*_*_*_*_*
 
+_mrange = "70"
+if (int(id_bins) > 4) and (int(id_bins) < 19): 
+    _mrange = "77"
+
+
 Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         NumCPU = cms.uint32(1),
     SaveWorkspace = cms.bool(False),
 
     Variables = cms.PSet(
         weight = cms.vstring("weight","-100","100",""),
-        mass = cms.vstring("Tag-muon Mass", "70", "130", "GeV/c^{2}"),
+        #mass = cms.vstring("Tag-muon Mass", "70", "130", "GeV/c^{2}"),
+        mass = cms.vstring("Tag-muon Mass", _mrange, "130", "GeV/c^{2}"),
         pt = cms.vstring("muon p_{T}", "0", "1000", "GeV/c"),
         eta    = cms.vstring("muon #eta", "-2.5", "2.5", ""),
         abseta = cms.vstring("muon |#eta|", "0", "2.5", ""),
@@ -216,7 +222,7 @@ VTX_BINS_INCLUSIVE_ETA_PT  = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 PT_BINS_INCLUSIVE_ETA = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble(  0.0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     #tag selections
@@ -346,7 +352,7 @@ MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT  = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 MEDIUM_PT_BINS_INCLUSIVE_ETA = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble(  0.0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     Medium = cms.vstring("pass"), 
