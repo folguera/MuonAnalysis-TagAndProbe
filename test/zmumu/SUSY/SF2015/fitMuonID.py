@@ -285,7 +285,7 @@ LOOSE_VTX_BINS_INCLUSIVE_ETA_PT  = cms.PSet(
     tag_combRelIsoPF04dBeta = cms.vdouble(-0.5, 0.2),
 )
 LOOSE_PT_BINS_INCLUSIVE_ETA = cms.PSet(
-    pt     = cms.vdouble(10, 20, 30, 40, 50, 60, 80, 120, 200),
+    pt     = cms.vdouble(10, 20, 25, 30, 40, 50, 60, 80, 120, 200),
     abseta = cms.vdouble(  0.0, 2.4),
     pair_probeMultiplicity = cms.vdouble(0.5, 1.5),
     PF = cms.vstring("pass"), 
@@ -658,7 +658,7 @@ for ID, ALLBINS in ID_BINS:
 
     if not "Iso" in ID:  #customize only for ID
         if ALLBINS[0].find('VAR_pt') != -1: 
-                shape = cms.vstring("vpvPlusExpo","*pt_bin5*","vpvPlusCheb","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb")
+                shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
         if ALLBINS[0].find('VAR_map_pt_eta') != -1: 
                 shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb")
     
