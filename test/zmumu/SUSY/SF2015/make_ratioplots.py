@@ -40,6 +40,7 @@ def getparameter(_file):
         _par.append('pt_PLOT_abseta_bin0')
         _par.append('pt_PLOT_abseta_bin1')
         _par.append('pt_PLOT_abseta_bin2')
+        _par.append('pt_PLOT_abseta_bin3')
     elif _file.find('pt_highabseta') != -1:_par.append('pt_PLOT')
     elif _file.find('VAR_vtx') != -1: _par.append('tag_nVertices_PLOT')
     elif _file.find('_phi') != -1: _par.append('phi_PLOT')
