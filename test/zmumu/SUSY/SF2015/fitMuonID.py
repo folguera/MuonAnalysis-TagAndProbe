@@ -400,8 +400,9 @@ if scenario == 'data_all':
         if run == '2015D':
             process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                    'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root'
-                    #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2SmallTree.root'
+                    #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root'      #original file: full size on eos
+                    #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2SmallTree.root' #small file with only 5000 events fot test purposes
+                    'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnpZ_mu_POG_Data_25ns_run2015D_v3p2_withEAMiniIso.root'       
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -414,7 +415,8 @@ elif scenario == 'mc_all':
             if order== 'LO':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
-                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
+                #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
+                'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -427,11 +429,11 @@ elif scenario == 'mc_all':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                 #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_NLO_SmallTree_withNVtxWeights_WithWeights_withEAMiniIso_v2.root'
-                'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
+                #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'
                 #'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeights.root'    # local NLO sample full size 12e6 events
                 #'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeightsSmallTree.root'    #local NLO sample with 3e6 events
                 #'root:///afs/cern.ch/work/j/jhoss/public/tnpZ_MC_25ns_amcatnloFXFX-pythia8_v3_WithWeightsSmallTree_v2.root'    #local NLO sample with 9e6 events
-
+                'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnpZ_muPOG_MC_25ns_amcatnloFXFX-pythia8_v3p2_WithWeights_withEAMiniIso.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -647,14 +649,19 @@ for ID, ALLBINS in ID_BINS:
     module = process.TnP_MuonID.clone(OutputFileName = cms.string(_output + "/TnP_MuonID_%s.root" % (X)))
     shape = cms.vstring("vpvPlusExpo")
     #shape = cms.vstring("vpvPlusCheb")
-    if not "Iso" in ID:  #customize only for ID
-        if (len(B.pt)==10):  #customize only when the pT have the high pt bins
-            if "Loose_noIP" in ID:
-                shape = cms.vstring("vpvPlusExpo","*pt_bin5*","vpvPlusCheb","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
-            else:
-                shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
-    DEN = B.clone(); num = ID;
 
+    if not "Iso" in ID:  #customize only for ID
+        if ALLBINS[0].find('VAR_pt') != -1: 
+                shape = cms.vstring("vpvPlusExpo","*pt_bin5*","vpvPlusCheb","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb")
+        if ALLBINS[0].find('VAR_map_pt_eta') != -1: 
+                shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb")
+    
+        #if (len(B.pt)>=8):  #customize only when the pT have the high pt bins
+        #    if "Loose_noIP" in ID:
+        #        shape = cms.vstring("vpvPlusExpo","*pt_bin5*","vpvPlusCheb","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
+        #    else:
+        #        shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
+    DEN = B.clone(); num = ID;
     #compute isolation efficiency 
     if scenario == 'data_all':
         setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
