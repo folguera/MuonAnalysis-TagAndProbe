@@ -481,7 +481,7 @@ if id_bins == '2':
 if id_bins == '3':
     ID_BINS = [
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_map_pt_eta",              LOOSE_PT_ETA_MAP                      )),
     ]                                                                                                                
@@ -543,7 +543,7 @@ if id_bins == '10':
     ID_BINS = [
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_eta",              MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_vtx",              MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_pt",               MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
+    #(("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_pt",               MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_pt_eta",           MEDIUM_PT_ETA_MAP                      )),
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_eta",     MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_pt",      MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
@@ -656,7 +656,10 @@ for ID, ALLBINS in ID_BINS:
     shape = cms.vstring("vpvPlusExpo")
     #shape = cms.vstring("vpvPlusCheb")
 
-    if not "Iso" in ID:  #customize only for ID
+    if(("Iso" in ID) and (not "plus" in ID)):
+        shape = cms.vstring("vpvPlusExpo")
+    else:
+    #if not "Iso" in ID:  #customize only for ID
         if ALLBINS[0].find('VAR_pt') != -1: 
                 shape = cms.vstring("vpvPlusExpo","*pt_bin6*","vpvPlusCheb","*pt_bin7*","vpvPlusCheb","*pt_bin8*","vpvPlusCheb")
         if ALLBINS[0].find('VAR_map_pt_eta') != -1: 

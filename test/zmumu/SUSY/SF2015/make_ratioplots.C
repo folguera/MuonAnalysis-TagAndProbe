@@ -132,7 +132,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad1->SetTopMargin(0.1); 
     pad1->Draw();
     pad1->cd();
-    float eff_min = 0.885;
+    float eff_min = 0.895;
     float eff_max = 1.05;
     TString axistitle =  eff1->GetXaxis()->GetTitle();
     TH1F* hr;
