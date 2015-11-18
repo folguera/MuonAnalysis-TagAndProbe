@@ -10,14 +10,14 @@
 #bsub -q 8nh -u pippo1234 run.sh NEWstack 8 data_all 25ns 2015D
 #bsub -q 8nh -u pippo1234 run.sh NEWstack 9 data_all 25ns 2015D
 #bsub -q 8nh -u pippo1234 run.sh NEWstack 10 data_all 25ns 2015D
-bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 11 data_all 25ns 2015D
-bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 12 data_all 25ns 2015D
-bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 13 data_all 25ns 2015D
-#bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 14 data_all 25ns 2015D
-#bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 15 data_all 25ns 2015D
-bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 16 data_all 25ns 2015D
-#bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 17 data_all 25ns 2015D
-bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack 18 data_all 25ns 2015D
+bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 11 data_all 25ns 2015D
+bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 12 data_all 25ns 2015D
+bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 13 data_all 25ns 2015D
+#bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 14 data_all 25ns 2015D
+#bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 15 data_all 25ns 2015D
+bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 16 data_all 25ns 2015D
+#bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 17 data_all 25ns 2015D
+bsub -R "pool>30000" -q 8nh -u pippo1234 run.sh NEWstack2 18 data_all 25ns 2015D
 
 #bsub -q 8nh -u pippo1234 run.sh NEWstack 1 mc_all 25ns 2015D LO
 #bsub -q 8nh -u pippo1234 run.sh NEWstack 2 mc_all 25ns 2015D LO

@@ -198,7 +198,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
        
     if(_canvas.Contains("VAR_pt")){    _legtext2 += "#||{#eta} #leq 2.4 "   ; }
     else if(_canvas.Contains("VAR_eta")){    _legtext2 += "p_{T} #geq 10 GeV"   ; }
-    else if(_canvas.Contains("VAR_vtx")){    _legtext2 += "p_{T} #geq 10 GeV, #||{#eta} #geq 2.4"   ; }
+    else if(_canvas.Contains("VAR_vtx")){    _legtext2 += "p_{T} #geq 10 GeV, #||{#eta} #leq 2.4"   ; }
     
     else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin0")){  _legtext2 += "0 < #||{#eta} #leq 0.9"   ; }   
     else if(_canvas.Contains("VAR_map_pt") && _canvas.Contains("pt_PLOT_abseta_bin1")){  _legtext2 += "0.9 < #||{#eta} #leq 1.2"   ; }   
@@ -208,9 +208,9 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else if(_canvas.Contains("VAR_map_activity_eta") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_abseta_bin0")){  _legtext2 += "0 < #||{#eta} #leq 1.2, p_{T} #geq 10 GeV"   ; }   
     else if(_canvas.Contains("VAR_map_activity_eta") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_abseta_bin1")){  _legtext2 += "1.2 < #||{#eta} #leq 2.4, p_{T} #geq 10 GeV"   ; }   
 
-    else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin0")){  _legtext2 += "10 GeV < p_{T} #leq 40 GeV, #||{#eta} #geq 2.4"   ; }   
-    else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin1")){  _legtext2 += "40 GeV < p_{T} #leq 80 GeV, #||{#eta} #geq 2.4"   ; }   
-    else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin2")){  _legtext2 += "80 GeV < p_{T} #leq 200 GeV, #||{#eta} #geq 2.4"   ; }   
+    else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin0")){  _legtext2 += "10 GeV < p_{T} #leq 40 GeV, #||{#eta} #leq 2.4"   ; }   
+    else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin1")){  _legtext2 += "40 GeV < p_{T} #leq 80 GeV, #||{#eta} #leq 2.4"   ; }   
+    else if(_canvas.Contains("VAR_map_activity_pt") && _canvas.Contains("pfCombRelActivitydBCorr_PLOT_pt_bin2")){  _legtext2 += "80 GeV < p_{T} #leq 200 GeV, #||{#eta} #leq 2.4"   ; }   
 
     TString _legtext = "#splitline{" + _legtext1 + "}{" + _legtext2 + "}";
 
