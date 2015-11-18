@@ -132,12 +132,12 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     pad1->SetTopMargin(0.1); 
     pad1->Draw();
     pad1->cd();
-    float eff_min = 0.895;
-    float eff_max = 1.05;
+    float eff_min = 0.785;
+    float eff_max = 1.15;
     TString axistitle =  eff1->GetXaxis()->GetTitle();
     TH1F* hr;
     if( axistitle == "pfCombRelActivitydBCorr"){
-        hr = pad1->DrawFrame(0.001,eff_min,10.01,eff_max);
+        hr = pad1->DrawFrame(0.001,0.07,10.01,1.50);
     }
     else{
         hr = pad1->DrawFrame(x_low,eff_min,x_hi,eff_max);
@@ -161,10 +161,15 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     TString _title = eff1->GetXaxis()->GetTitle();
     if(_xtitle == "Rel Activity"){
         pad1->SetLogx();
-        eff1->GetXaxis()->SetRangeUser(x_low, 10.01);
+        eff1->GetXaxis()->SetRangeUser(0.001, 10.01);
     }
     hr->GetXaxis()->SetTitle("");
-    hr->GetYaxis()->SetRangeUser(eff_min, eff_max);
+    if(_xtitle == "Rel Activity"){
+        eff1->GetYaxis()->SetRangeUser(0.07, 1.50);
+    }   
+    else{
+        hr->GetYaxis()->SetRangeUser(eff_min, eff_max);
+    }
     hr->GetYaxis()->SetTitleSize(27);
     hr->GetYaxis()->SetTitleFont(63);
     hr->GetYaxis()->SetLabelFont(43);
@@ -508,7 +513,7 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     TH1F* h;
     float ymin = 0.950001;
     float ymax = 1.049999;
-    float xmin = eff1->GetXaxis()->GetXmin();
+    float xmin = 0.001; //eff1->GetXaxis()->GetXmin();
     
     //float xmax = eff1->GetXaxis()->GetXmax();
     float xmax = 10.01;
