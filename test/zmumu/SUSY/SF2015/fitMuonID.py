@@ -422,7 +422,8 @@ elif scenario == 'mc_all':
                 process.TnP_MuonID = Template.clone(
                 InputFileNames = cms.vstring(
                 #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
-                'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
+                #'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
+                'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_withNVtxWeights_withEAMiniIso_v2.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
