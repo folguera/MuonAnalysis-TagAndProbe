@@ -191,7 +191,14 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     else if(_canvas.Contains("NUM_MiniIsoLoose_DENOM")){    _legtext1 = "MiniIso loose / "   ; }
     else if(_canvas.Contains("NUM_MiniIsoTight_DENOM")){    _legtext1 = "MiniIso tight / "   ; }
     else if(_canvas.Contains("NUM_MultiIsoMedium_DENOM")){    _legtext1 = "MultiIso medium / "   ; }
-    else if(_canvas.Contains("plus")){    _legtext1 = "Stacked "   ; }
+    else if(_canvas.Contains("MiniIso04")){    _legtext1 = "Loose + MiniIso04 + TightIP2D "   ; }
+    else if(_canvas.Contains("MultiIso") and _canvas.Contains("plus")){    _legtext1 = "Medium + MultiIsoMedium + TightIP2D + TightIP3D"   ; }
+    else if(_canvas.Contains("Medium") and _canvas.Contains("MiniIso02") and  _canvas.Contains("TightIP2D") ){    _legtext1 = "Medium + MiniIso02 + TightIP2D"   ; }
+    else if(_canvas.Contains("Medium") and _canvas.Contains("MiniIso02") and  _canvas.Contains("TightIP3D") ){    _legtext1 = "Medium + MiniIso02 + TightIP3D"   ; }
+    else if(_canvas.Contains("Loose") and _canvas.Contains("MiniIso02") and  _canvas.Contains("TightIP3D") ){    _legtext1 = "Loose + MiniIso02 + TightIP3D"   ; }
+    else if(_canvas.Contains("Medium") and _canvas.Contains("MiniIso02") and not _canvas.Contains("TightIP") ){    _legtext1 = "Medium + MiniIso02"   ; }
+    else if(_canvas.Contains("Loose") and _canvas.Contains("MiniIso02") and  _canvas.Contains("TightIP2D") ){    _legtext1 = "Loose + MiniIso02 + TightIP2D"   ; }
+    else if(_canvas.Contains("Loose") and _canvas.Contains("MiniIso02") and not _canvas.Contains("TightIP") ){    _legtext1 = "Loose + MiniIso02"   ; }
 
     if(_canvas.Contains("NUM_LooseID_DENOM") || _canvas.Contains("DENOM_LooseID")){    _legtext1 += "Loose Id \n"   ; }
     else if(_canvas.Contains("NUM_MediumID_DENOM") || _canvas.Contains("DENOM_MediumID")){    _legtext1 += "Medium Id \n"    ;}
@@ -514,12 +521,13 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     float ymin = 0.950001;
     float ymax = 1.049999;
     float xmin = 0.001; //eff1->GetXaxis()->GetXmin();
-    
+    float enlarge = 0.9;   
+ 
     //float xmax = eff1->GetXaxis()->GetXmax();
     float xmax = 10.01;
     
     if(_xtitle == "Rel Activity"){
-        h = pad2->DrawFrame(xmin,ymin,xmax,ymax);
+        h = pad2->DrawFrame(xmin,ymin-enlarge,xmax,ymax+enlarge);
     }
     else{ 
         h = pad2->DrawFrame(x_low,ymin,x_hi,ymax);
@@ -530,7 +538,12 @@ int make_ratioplots(TString _file, TString _canvas, TString _path1, TString _pat
     h->SetMarkerStyle(20);
     h->SetMarkerColor(1);
     //ratio->GetYaxis()->SetRangeUser(0.9,1.0999);
-    h->GetYaxis()->SetRangeUser(ymin,ymax);
+    if(_xtitle == "Rel Activity"){
+        h->GetYaxis()->SetRangeUser(ymin-enlarge,ymax+enlarge);
+    }
+    else{ 
+        h->GetYaxis()->SetRangeUser(ymin,ymax);
+    }
     //raftio->GetYaxis()->SetRangeUser(0.98,1.01999);
     h->GetYaxis()->SetTitle("Data/MC");
     h->GetYaxis()->SetNdivisions(505);

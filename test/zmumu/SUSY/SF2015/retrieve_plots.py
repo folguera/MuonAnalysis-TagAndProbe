@@ -53,9 +53,9 @@ args = sys.argv[1:]
 iteration = '1'
 if len(args) > 0: iteration =  args[0]
 print "The iteration is ", iteration
-#_sample = '/DATA25ns2015D/'
+_sample = '/DATA25ns2015D/'
 #_sample = '/MC25ns2015DLO/'
-_sample = '/MC25ns2015DNLO/'
+#_sample = '/MC25ns2015DNLO/'
 if len(args) > 1: _sample =  args[1]
 print "The sample is", _sample 
 _folder = os.getcwd() + '/Efficiency' + iteration + '/' + _sample + '/'
