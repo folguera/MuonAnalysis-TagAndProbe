@@ -408,7 +408,11 @@ if scenario == 'data_all':
                 InputFileNames = cms.vstring(
                     #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2.root'      #original file: full size on eos
                     #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_DATA_25ns_2015D_v3v4_withEAMiniIso_v2SmallTree.root' #small file with only 5000 events fot test purposes
-                    'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnpZ_mu_POG_Data_25ns_run2015D_v3p2_withEAMiniIso.root'       
+                    #'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnpZ_mu_POG_Data_25ns_run2015D_v3p2_withEAMiniIso.root'       
+                    'root:///afs/cern.ch/work/j/jhoss/public/151130_TnP_topUp/tnpZ_Data_25ns_run2015C_v3p31.root',
+                    'root:///afs/cern.ch/work/j/jhoss/public/151130_TnP_topUp/tnpZ_Data_25ns_run2015D_v3p2.root',
+                    'root:///afs/cern.ch/work/j/jhoss/public/151130_TnP_topUp/tnpZ_Data_25ns_run2015D_v3p31.root',
+                    'root:///afs/cern.ch/work/j/jhoss/public/151130_TnP_topUp/tnpZ_Data_25ns_run2015D_v3p3.root'
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -423,7 +427,8 @@ elif scenario == 'mc_all':
                 InputFileNames = cms.vstring(
                 #'root://eoscms//eos/cms/store/group/phys_muon/perrin/SUSY/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
                 #'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_SmallTree_withNVtxWeights_withEAMiniIso_v2.root'
-                'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_withNVtxWeights_withEAMiniIso_v2.root'
+                #'root:///afs/cern.ch/work/g/gaperrin/public/Ntuples_for_Jan/tnp_MC_25ns_2015D_LO_withNVtxWeights_withEAMiniIso_v2.root'
+                'root:///afs/cern.ch/work/j/jhoss/public/151130_TnP_topUp/tnpZ_MC_25ns_madgraphMLM-pythia8_v3p2_withNVtxWeights.root' #LO sample for top up
                     ),
                 InputTreeName = cms.string("fitter_tree"),
                 InputDirectoryName = cms.string("tpTree"),
@@ -463,17 +468,17 @@ ID_BINS = []
 #Loose ID
 if id_bins == '1':
     ID_BINS = [
-    (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_eta",            ETA_BINS_INCLUSIVE_PT           )),
-    (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_vtx",            VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_pt",             PT_BINS_INCLUSIVE_ETA           )),
+    #(("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_eta",            ETA_BINS_INCLUSIVE_PT           )),
+    #(("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_vtx",            VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_pt",             PT_BINS_INCLUSIVE_ETA           )),
     (("Loose_noIP"), ("NUM_LooseID_DENOM_generalTracks_VAR_map_pt_eta",         PT_ETA_MAP                      )),
     ]
 #Medium ID
 if id_bins == '2':
     ID_BINS = [
-    (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_eta",          ETA_BINS_INCLUSIVE_PT           )),
-    (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_vtx",          VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_pt",           PT_BINS_INCLUSIVE_ETA           )),
+    #(("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_eta",          ETA_BINS_INCLUSIVE_PT           )),
+    #(("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_vtx",          VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_pt",           PT_BINS_INCLUSIVE_ETA           )),
     (("Medium_noIP"), ("NUM_MediumID_DENOM_generalTracks_VAR_map_pt_eta",       PT_ETA_MAP                      )),
     ]
 #_*_
@@ -481,30 +486,30 @@ if id_bins == '2':
 #_*_
 if id_bins == '3':
     ID_BINS = [
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_LooseID_VAR_map_pt_eta",              LOOSE_PT_ETA_MAP                      )),
     ]                                                                                                                
 if id_bins == '4':                                                                                                   
     ID_BINS = [                                                                                                      
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_eta",                MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_vtx",                MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_pt",                 MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_eta",                MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_vtx",                MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_pt",                 MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
     (("TightIP2D"), ("NUM_TightIP2D_DENOM_MediumID_VAR_map_pt_eta",             MEDIUM_PT_ETA_MAP                      )),
     ]
 if id_bins == '5':
     ID_BINS = [
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
+    #(("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_eta",                 LOOSE_ETA_BINS_INCLUSIVE_PT           )),
+    #(("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_vtx",                 LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_pt",                  LOOSE_PT_BINS_INCLUSIVE_ETA           )),
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_LooseID_VAR_map_pt_eta",              LOOSE_PT_ETA_MAP                      )),
     ]
 if id_bins == '6':
     ID_BINS = [
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_eta",                MEDIUM_ETA_BINS_INCLUSIVE_PT           )),
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_vtx",                MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_pt",                 MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
+    #(("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_eta",                MEDIUM_ETA_BINS_INCLUSIVE_PT           )),
+    #(("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_vtx",                MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_pt",                 MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
     (("TightIP3D"), ("NUM_TightIP3D_DENOM_MediumID_VAR_map_pt_eta",             MEDIUM_PT_ETA_MAP                      )),
     ]
 #_*_*
@@ -513,41 +518,41 @@ if id_bins == '6':
 #Loose MiniIso
 if id_bins == '7':
     ID_BINS = [
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_eta",                   LOOSE_ETA_BINS_INCLUSIVE_PT           )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_vtx",                   LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_pt",                    LOOSE_PT_BINS_INCLUSIVE_ETA           )),
+    #(("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_eta",                   LOOSE_ETA_BINS_INCLUSIVE_PT           )),
+    #(("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_vtx",                   LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_pt",                    LOOSE_PT_BINS_INCLUSIVE_ETA           )),
     (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_pt_eta",                LOOSE_PT_ETA_MAP                      )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    #(("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    #(("LooseMiniIso"), ("NUM_MiniIsoLoose_DENOM_LooseID_VAR_map_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Tight MiniIso
 if id_bins == '8':
     ID_BINS = [
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_eta",                  MEDIUM_ETA_BINS_INCLUSIVE_PT           )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_vtx",                  MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_pt",                   MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_eta",                  MEDIUM_ETA_BINS_INCLUSIVE_PT           )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_vtx",                  MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_pt",                   MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_pt_eta",               MEDIUM_PT_ETA_MAP                      )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_activity_eta",         MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_activity_pt",          MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_activity_eta",         MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_MediumID_VAR_map_activity_pt",          MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 if id_bins == '9':
     ID_BINS = [
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_eta",                   LOOSE_ETA_BINS_INCLUSIVE_PT           )), 
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_vtx",                   LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_pt",                    LOOSE_PT_BINS_INCLUSIVE_ETA           )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_eta",                   LOOSE_ETA_BINS_INCLUSIVE_PT           )), 
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_vtx",                   LOOSE_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_pt",                    LOOSE_PT_BINS_INCLUSIVE_ETA           )),
     (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_pt_eta",                LOOSE_PT_ETA_MAP                      )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_activity_eta",          LOOSE_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    #(("TightMiniIso"), ("NUM_MiniIsoTight_DENOM_LooseID_VAR_map_activity_pt",           LOOSE_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #MultiIso
 if id_bins == '10':
     ID_BINS = [
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_eta",              MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_vtx",              MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_pt",               MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
+    #(("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_eta",              MEDIUM_ETA_BINS_INCLUSIVE_PT           )), 
+    #(("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_vtx",              MEDIUM_VTX_BINS_INCLUSIVE_ETA_PT       )),
+    #(("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_pt",               MEDIUM_PT_BINS_INCLUSIVE_ETA           )),
     (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_pt_eta",           MEDIUM_PT_ETA_MAP                      )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_eta",     MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
-    (("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_pt",      MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
+    #(("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_eta",     MEDIUM_ACTIVITY_ETA_MAP_INCLUSIVE_PT   )),
+    #(("MediumMultiIso"), ("NUM_MultiIsoMedium_DENOM_MediumID_VAR_map_activity_pt",      MEDIUM_ACTIVITY_PT_MAP_INCLUSIVE_ETA   )),
     ]
 #Loose+MiniIso02
 if id_bins == '11':
