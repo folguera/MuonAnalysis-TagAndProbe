@@ -21,10 +21,13 @@ void addEAMiniIso() {
     fOut->mkdir("tpTree")->cd();
     TTree *tOut = tIn->CloneTree(0);
     Float_t pfCombRelMiniIsoEACorr,pfCombAbsMiniIsoEACorr,pfCombRelActivitydBCorr,pfCombAbsActivitydBCorr;
-    tOut->Branch("pfCombAbsMiniIsoEACorr", &pfCombAbsMiniIsoEACorr, "pfCombAbsMiniIsoEACorr/F");
+    Float_t miniRelIsoCharged,miniRelIsoNeutral;
+    //    tOut->Branch("pfCombAbsMiniIsoEACorr", &pfCombAbsMiniIsoEACorr, "pfCombAbsMiniIsoEACorr/F");
     tOut->Branch("pfCombRelMiniIsoEACorr", &pfCombRelMiniIsoEACorr, "pfCombRelMiniIsoEACorr/F");
-    tOut->Branch("pfCombRelActivitydBCorr", &pfCombRelActivitydBCorr, "pfCombRelActivitydBCorr/F");
-    tOut->Branch("pfCombAbsActivitydBCorr", &pfCombAbsActivitydBCorr, "pfCombAbsActivitydBCorr/F");
+    tOut->Branch("miniRelIsoCharged",&miniRelIsoCharged,"miniRelIsoCharged/F");
+    tOut->Branch("miniRelIsoNeutral",&miniRelIsoNeutral,"miniRelIsoNeutral/F");
+    //    tOut->Branch("pfCombRelActivitydBCorr", &pfCombRelActivitydBCorr, "pfCombRelActivitydBCorr/F");
+    //    tOut->Branch("pfCombAbsActivitydBCorr", &pfCombAbsActivitydBCorr, "pfCombAbsActivitydBCorr/F");
 
     MuonEffectiveArea::MuonEffectiveAreaTarget effAreaTarget = MuonEffectiveArea::kMuEASpring15_25ns; // new 2015
     MuonEffectiveArea::MuonEffectiveAreaType   effAreaType   = MuonEffectiveArea::kMuMiniIso03;
@@ -38,7 +41,9 @@ void addEAMiniIso() {
         
         pfCombAbsMiniIsoEACorr = (chHad + max(0.0, nHad - rho * ea_tot * pow((10.0/min(max((double) pt, 50.),200.))/0.3,2)));
         pfCombRelMiniIsoEACorr = pfCombAbsMiniIsoEACorr/pt;
-        
+        miniRelIsoCharged      = chHad / pt;
+	miniRelIsoNeutral      = max(0.0, nHad - rho * ea_tot * pow((10.0/min(max((double) pt, 50.),200.))/0.3,2))/pt;
+
         pfCombAbsActivitydBCorr = (activity_chHad + max( (double) (activity_nHad +  activity_phot -  activity_PUchHad/2) , 0.0));
         pfCombRelActivitydBCorr = pfCombAbsActivitydBCorr/pt;
                 
