@@ -20,6 +20,7 @@ void addEAMiniIso() {
     TFile *fOut = new TFile("tnpZ_withEAMiniIso.root", "RECREATE");
     fOut->mkdir("tpTree")->cd();
     TTree *tOut = tIn->CloneTree(0);
+
     Float_t pfCombRelMiniIsoEACorr,pfCombAbsMiniIsoEACorr,pfCombRelActivitydBCorr,pfCombAbsActivitydBCorr;
     Float_t miniRelIsoCharged,miniRelIsoNeutral;
     //    tOut->Branch("pfCombAbsMiniIsoEACorr", &pfCombAbsMiniIsoEACorr, "pfCombAbsMiniIsoEACorr/F");

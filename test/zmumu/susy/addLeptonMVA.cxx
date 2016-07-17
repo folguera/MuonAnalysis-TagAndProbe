@@ -6,23 +6,22 @@
 #include <vector>
 #include <cstdlib>
 #include <cmath>
-#include "LeptonMVA/Tools/LeptonMVAReader.h"
+#define STANDALONE
+#include "LeptonMVAReader.h"
 
-void addMVAIso() {
-    const char *base=getenv("CMSSW_BASE");
-    std::string baseFolder(base);
-    baseFolder += "/src/LeptonMVA/Tools/data/";
-    std::string weights = baseFolder+"/forMoriond16_mu_sigTTZ_bkgTT_BDTG.weights.xml";
-
+void addLeptonMVA() {
+    std::string weights = "forMoriond16_mu_sigTTZ_bkgTT_BDTG.weights.xml";
+    
+    std::cout<<"Initializing MVA" <<std::endl;
     LeptonMVAReader *lepMVA  = new LeptonMVAReader();
     lepMVA->initialize(weights);
 
     TTree *tIn  = (TTree *) ((TFile*)gROOT->GetListOfFiles()->At(0))->Get("tpTree/fitter_tree");
     Float_t pt, eta;
     Int_t JetNDauCharged;
-    Float_t miniRelIsoCharged;
-    Float_t miniRelIsoNeutral;
-    
+    Float_t JetPtRel,JetPtRatio,JetBTagCSV;
+    Float_t miniRelIsoCharged, miniRelIsoNeutral;
+    Float_t SIP,dxyBS,dzPV,segmentCompatibility;
     tIn->SetBranchAddress("pt",  &pt);
     tIn->SetBranchAddress("eta", &eta);
     tIn->SetBranchAddress("JetNDauCharged",&JetNDauCharged);
@@ -34,6 +33,7 @@ void addMVAIso() {
     tIn->SetBranchAddress("SIP",&SIP);    
     tIn->SetBranchAddress("dxyBS",&dxyBS);
     tIn->SetBranchAddress("dzPV",&dzPV);
+    tIn->SetBranchAddress("segmentCompatibility",&segmentCompatibility);
 
     TFile *fOut = new TFile("tnpZ_withLeptonMVA.root", "RECREATE");
     fOut->mkdir("tpTree")->cd();
@@ -49,7 +49,8 @@ void addMVAIso() {
 
 	mvaSUSY = lepMVA->getMVAValue(pt, eta, JetNDauCharged, 
 				      miniRelIsoCharged, miniRelIsoNeutral,
-				      JetPtRel, JetPtRatio,JetBTagCSV,SIP,dxyBS,dzPV);
+				      JetPtRel, JetPtRatio,JetBTagCSV,SIP,dxyBS,dzPV,
+				      segmentCompatibility);
         tOut->Fill();
         if ((i+1) % step == 0) { 
 	  double totalTime = timer.RealTime()/60.; timer.Continue();
